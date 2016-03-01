@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.andreaskarinam.represent.Main_mobile"
+    android:clickable="true">
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:text="Enter Zipcode"
+        android:id="@+id/button"
+        android:layout_marginTop="130dp"
+        android:textSize="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="switch_to_zipcode_view"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:text="Current Location"
+        android:id="@+id/button2"
+        android:layout_marginTop="64dp"
+        android:textSize="16dp"
+        android:layout_below="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:onClick="switch_to_congressional_view"/>
+</RelativeLayout>

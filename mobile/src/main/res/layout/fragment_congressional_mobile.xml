@@ -1,0 +1,86 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.andreaskarinam.represent.congressional_mobile$PlaceholderFragment"
+        android:background="#2F80ED"
+        android:id="@+id/lin_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Representative Name"
+            android:id="@+id/name_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="0dp"
+            android:textSize="30dp"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/rep_image"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Email@representative.host"
+            android:id="@+id/email_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="www.representatives_website.host"
+            android:id="@+id/website_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Last Tweet"
+            android:id="@+id/tweet_label"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="50dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Here is an abolutely massive tweet that takes up the entire screen and will probably need to be scrolled through"
+            android:id="@+id/tweet_content_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</ScrollView>
+
