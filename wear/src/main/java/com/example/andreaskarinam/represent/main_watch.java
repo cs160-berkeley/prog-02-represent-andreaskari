@@ -30,6 +30,8 @@ public class main_watch extends Activity {
     public static int county_index;
     public static County county;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,17 @@ public class main_watch extends Activity {
 
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
         pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+
+//        pager.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+//                intent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, )
+//                startService(sendIntent);
+//            }
+//        });
+
+        Context value = getBaseContext();
     }
 
     public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
@@ -67,8 +80,8 @@ public class main_watch extends Activity {
         public Fragment getFragment(int row, int col) {
             Fragment fragment = vote_fragment;
             if (row < county.representatives.size()) {
-                Representative rep = county.representatives.get(row);
-                fragment = new RepresentativeFragment(rep);
+//                Representative rep = county.representatives.get(row);
+                fragment = new RepresentativeFragment(row);
             }
 
             // Advanced settings (card gravity, card expansion/scrolling)
@@ -92,15 +105,17 @@ public class main_watch extends Activity {
 
     public static class RepresentativeFragment extends Fragment {
 
-        private Representative rep;
+        private int representative_number;
+        private Representative representative;
 
-        public RepresentativeFragment(Representative r) {
-            this.rep = r;
+        public RepresentativeFragment(int rep_number) {
+            this.representative_number = rep_number;
+            this.representative = county.representatives.get(rep_number);
         }
 
         // Returns a new instance of this fragment for the given section number
         public static RepresentativeFragment newInstance(int sectionNumber) {
-            RepresentativeFragment fragment = new RepresentativeFragment(county.representatives.get(sectionNumber));
+            RepresentativeFragment fragment = new RepresentativeFragment(sectionNumber);
             Bundle args = new Bundle();
             fragment.setArguments(args);
             return fragment;
@@ -112,10 +127,22 @@ public class main_watch extends Activity {
             View rootView = inflater.inflate(R.layout.watch_representative_layout, container, false);
 
             LinearLayout rl = (LinearLayout) rootView.findViewById(R.id.lin_layout);
-            rl.setBackgroundColor(this.rep.getColor());
+            rl.setBackgroundColor(this.representative.getColor());
 
             TextView rep_name_text = (TextView) rootView.findViewById(R.id.name_text);
-            rep_name_text.setText(this.rep.rep_name + " (" + this.rep.party + ")");
+            rep_name_text.setText(this.representative.rep_name + " (" + this.representative.party + ")");
+
+            rl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("Want to check detailed view");
+                    Context current_activity = getActivity();
+                    Intent sendIntent = new Intent(current_activity, WatchToPhoneService.class);
+                    sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
+                    sendIntent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_number);
+                    current_activity.startService(sendIntent);
+                }
+            });
 
             return rootView;
         }
