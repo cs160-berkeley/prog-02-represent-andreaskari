@@ -14,7 +14,7 @@ import com.google.android.gms.wearable.WearableListenerService;
 import java.nio.charset.StandardCharsets;
 
 public class PhoneListenerService extends WearableListenerService {
-    
+
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
@@ -24,8 +24,13 @@ public class PhoneListenerService extends WearableListenerService {
 
             String indices_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             String[] indices = indices_string.split(" ");
-            int county_index = Integer.getInteger(indices[0]);
-            int representative_index = Integer.getInteger(indices[1]);
+            System.out.println("Decoding message" + indices_string);
+            System.out.println(indices[0]);
+            System.out.println(indices[1]);
+            int county_index = Integer.parseInt(indices[0]);
+            System.out.println(county_index);
+            int representative_index = Integer.parseInt(indices[1]);
+            System.out.println(representative_index);
 
             Intent intent = new Intent(this, detailed_mobile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

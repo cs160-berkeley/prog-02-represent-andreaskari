@@ -49,7 +49,6 @@ public class PhoneToWatchService extends Service {
             @Override
             public void run() {
                 mApiClient.connect();
-
                 sendMessage(FakeData.COUNTY_INDEX_KEY, "" + county_index);
             }
         }).start();

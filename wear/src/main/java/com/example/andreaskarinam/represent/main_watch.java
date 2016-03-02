@@ -56,8 +56,6 @@ public class main_watch extends Activity {
 //                startService(sendIntent);
 //            }
 //        });
-
-        Context value = getBaseContext();
     }
 
     public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
@@ -135,12 +133,12 @@ public class main_watch extends Activity {
             rl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("Want to check detailed view");
-                    Context current_activity = getActivity();
-                    Intent sendIntent = new Intent(current_activity, WatchToPhoneService.class);
+                    Context current_activity = getActivity().getBaseContext();
+                    // getBaseContext()
+                    Intent sendIntent = new Intent(getActivity(), WatchToPhoneService.class);
                     sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
                     sendIntent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_number);
-                    current_activity.startService(sendIntent);
+                    getActivity().startService(sendIntent);
                 }
             });
 
