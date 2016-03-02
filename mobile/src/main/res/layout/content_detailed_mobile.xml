@@ -51,12 +51,11 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:id="@+id/rep_image"
+                android:id="@+id/party_image"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@android:color/transparent"
-                android:contentDescription=""
-                android:src="@drawable/party_icon" />
+                android:background="@drawable/party_icon"
+                android:contentDescription="" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,6 +69,17 @@
                 android:paddingLeft="10dp" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Duration of Term"
+            android:id="@+id/term_text"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textColor="#000000"
+            android:paddingBottom="10dp" />
 
         <TextView
             android:layout_width="match_parent"
