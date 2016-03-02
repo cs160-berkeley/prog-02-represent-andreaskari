@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lin_layout"
+    android:background="#ffffff">
+
+    <TextView
+        android:layout_width="172dp"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="2012\nPresidential Vote"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Some random county, ST"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:id="@+id/county_text"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000" />
+
+
+    <FrameLayout
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:id="@+id/progressBar"
+            android:layout_gravity="center_horizontal"
+            android:progress="55"
+            android:progressDrawable="@drawable/progress_bar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="55%"
+            android:textSize="30dp"
+            android:gravity="left"
+            android:id="@+id/romney_percent_text"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            android:textColor="#FFFFFF"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="45%"
+            android:textSize="30dp"
+            android:gravity="right"
+            android:id="@+id/obama_percent_text"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:textColor="#FFFFFF" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Romney vs. Obama"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000" />
+
+</LinearLayout>
