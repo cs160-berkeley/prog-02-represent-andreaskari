@@ -8,13 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Representative Name"
+        android:text="Rep Name"
         android:textSize="30dp"
-        android:gravity="center"
+        android:gravity="center|center_vertical|center_horizontal"
         android:id="@+id/name_text"
         android:layout_marginTop="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center" />
 
 </LinearLayout>

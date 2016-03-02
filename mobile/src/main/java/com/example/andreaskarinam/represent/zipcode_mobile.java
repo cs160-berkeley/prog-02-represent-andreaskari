@@ -17,6 +17,10 @@ public class zipcode_mobile extends AppCompatActivity {
     }
 
     public void switch_to_congressional_view(View view) {
+        Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
+        sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, 1);
+        startService(sendIntent);
+
         Intent intent = new Intent(this, congressional_mobile.class);
         intent.putExtra(FakeData.COUNTY_INDEX_KEY, 1);
         startActivity(intent);

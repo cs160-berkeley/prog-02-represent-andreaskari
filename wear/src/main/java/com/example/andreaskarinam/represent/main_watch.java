@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.wearable.view.CardFragment;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.andreaskarinam.mylibrary.County;
+import com.example.andreaskarinam.mylibrary.FakeData;
 import com.example.andreaskarinam.mylibrary.Representative;
 
 import java.util.ArrayList;
@@ -24,46 +27,21 @@ import java.util.List;
 
 public class main_watch extends Activity {
 
-//    private TextView mTextView;
-
-    public static ArrayList<Representative> representatives = new ArrayList<Representative>();
+    public static int county_index;
+    public static County county;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Representative boxer = new Representative(
-                "Barbara Boxer",
-                "D",
-                "senator@boxer.senate.gov",
-                "www.boxer.senate.gov/",
-                "@SenatorMajLdr: McConnell says he wants the Senate working again. Now he's choosing politics over over of our most important obligations.",
-                "Boxer.png"
-        );
-
-        Representative feinstein = new Representative(
-                "Diane Feinstein",
-                "D",
-                "senator@feinstein.senate.gov",
-                "www.feinstein.senate.gov/",
-                "Love seeing the new signage at the new Castle Mountains National Monument! #ProtectCADesert",
-                "Feinstein.png"
-        );
-
-        Representative mcclintock = new Representative(
-                "Tom McClintock",
-                "R",
-                "representative@mcclintock.house.gov",
-                "www.mcclintock.house.gov/",
-                "S.J. Res. 22 - Disapproving the #EPA #WOTUS (Waters of the U.S.) Rule http://1.usa.gov/200QA5x",
-                "McClintock.png"
-        );
-
-        representatives.add(boxer);
-        representatives.add(feinstein);
-        representatives.add(mcclintock);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_watch);
+
+        FakeData data = new FakeData();
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
+        }
+        county = data.counties.get(county_index);
 
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
         pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
@@ -88,8 +66,8 @@ public class main_watch extends Activity {
         @Override
         public Fragment getFragment(int row, int col) {
             Fragment fragment = vote_fragment;
-            if (row < representatives.size()) {
-                Representative rep = representatives.get(row);
+            if (row < county.representatives.size()) {
+                Representative rep = county.representatives.get(row);
                 fragment = new RepresentativeFragment(rep);
             }
 
@@ -103,7 +81,7 @@ public class main_watch extends Activity {
 
         @Override
         public int getRowCount() {
-            return 4;
+            return county.representatives.size() + 1;
         }
 
         @Override
@@ -122,7 +100,7 @@ public class main_watch extends Activity {
 
         // Returns a new instance of this fragment for the given section number
         public static RepresentativeFragment newInstance(int sectionNumber) {
-            RepresentativeFragment fragment = new RepresentativeFragment(representatives.get(sectionNumber));
+            RepresentativeFragment fragment = new RepresentativeFragment(county.representatives.get(sectionNumber));
             Bundle args = new Bundle();
             fragment.setArguments(args);
             return fragment;
@@ -162,7 +140,7 @@ public class main_watch extends Activity {
             View rootView = inflater.inflate(R.layout.vote_layout, container, false);
 
             TextView county_text = (TextView) rootView.findViewById(R.id.county_text);
-            county_text.setText("Los Angeles County, CA");
+            county_text.setText(county.county_name);
 
             return rootView;
         }

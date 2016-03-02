@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class FakeData {
     public final static String COUNTY_INDEX_KEY = "county_index";
     public final static String REPRESENTATIVE_INDEX_KEY = "representative_key";
+    public final static String MESSAGE = "message";
 
     public ArrayList<County> counties;
 
