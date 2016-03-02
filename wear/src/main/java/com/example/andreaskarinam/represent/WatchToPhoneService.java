@@ -61,35 +61,30 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
         representative_index = intent.getIntExtra(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                mWatchApiClient.connect();
-//                sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mWatchApiClient.connect();
+                sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
+            }
+        }).start();
 
         return START_STICKY;
     }
 
     @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
     public void onConnected(final Bundle bundle) {
-//        Log.d("T", "in onconnected");
         System.out.println("Service is connected");
         Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
                 .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-//                    int county_index = bundle.getInt(FakeData.COUNTY_INDEX_KEY, 0);
-//                    int representative_index = bundle.getInt(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
 
                     @Override
                     public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
                         nodes = getConnectedNodesResult.getNodes();
                         System.out.println("Attempting to send message from watch");
-//                        Log.d("T", "found nodes");
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-                        sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
-//                        Log.d("T", "sent");
+//                        sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
                     }
                 });
     }
