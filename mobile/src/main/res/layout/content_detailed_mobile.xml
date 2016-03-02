@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.andreaskarinam.represent.detailed_mobile"
+    tools:showIn="@layout/activity_detailed_mobile">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.andreaskarinam.represent.congressional_mobile$PlaceholderFragment"
+        android:background="#FFFFFF"
+        android:id="@+id/lin_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Representative Name"
+            android:id="@+id/name_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="0dp"
+            android:textSize="30dp"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/rep_image"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:contentDescription="" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/rep_image"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:contentDescription=""
+                android:src="@drawable/party_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Party"
+                android:id="@+id/party_text"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:paddingLeft="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Committees"
+            android:id="@+id/committees_label"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingBottom="10dp"
+            android:background="#2F80ED" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/large_text"
+            android:id="@+id/committees_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Recently Sponsored Bills"
+            android:id="@+id/bills_label"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingBottom="10dp"
+            android:background="#2F80ED" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/large_text"
+            android:id="@+id/bills_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

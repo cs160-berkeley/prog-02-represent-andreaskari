@@ -1,5 +1,6 @@
 package com.example.andreaskarinam.represent;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -146,6 +147,18 @@ public class congressional_mobile extends AppCompatActivity {
             } else {
                 rep_image.setImageResource(R.drawable.mcclintock);
             }
+
+            rep_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), detailed_mobile.class);
+
+                    intent.putExtra("rep", rep);
+                    intent.putExtra("KEY_StringName1", name1);
+
+                    startActivity(intent);
+                }
+            });
 
             return rootView;
         }

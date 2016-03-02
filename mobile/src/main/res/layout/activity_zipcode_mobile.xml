@@ -15,10 +15,11 @@
         android:layout_height="75dp"
         android:text="Go"
         android:id="@+id/button"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="133dp"
+        android:background="@drawable/stroke_button"
         android:onClick="switch_to_congressional_view"/>
 
     <EditText
@@ -31,5 +32,6 @@
         android:id="@+id/editText"
         android:layout_above="@+id/button"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp" />
+        android:layout_marginBottom="62dp"
+        android:textColor="#000000" />
 </RelativeLayout>

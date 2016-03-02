@@ -20,6 +20,10 @@
             android:name=".congressional_mobile"
             android:label="@string/title_activity_congressional_mobile"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".detailed_mobile"
+            android:label="@string/title_activity_detailed_mobile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
