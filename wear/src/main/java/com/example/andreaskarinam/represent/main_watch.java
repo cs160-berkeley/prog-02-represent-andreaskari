@@ -73,6 +73,7 @@ public class main_watch extends Activity {
 
         private final Context mContext;
         private List mRows;
+        private Fragment vote_fragment = new VoteFragment();
 
         public SampleGridPagerAdapter(Context ctx, FragmentManager fm) {
             super(fm);
@@ -86,10 +87,10 @@ public class main_watch extends Activity {
         // Obtain the UI fragment at the specified position
         @Override
         public Fragment getFragment(int row, int col) {
-            Representative rep = representatives.get(row);
-            Fragment fragment = new RepresentativeFragment(rep);
-            if (row >= representatives.size()) {
-
+            Fragment fragment = vote_fragment;
+            if (row < representatives.size()) {
+                Representative rep = representatives.get(row);
+                fragment = new RepresentativeFragment(rep);
             }
 
             // Advanced settings (card gravity, card expansion/scrolling)
@@ -142,31 +143,28 @@ public class main_watch extends Activity {
         }
     }
 
-//    public static class VoteFragment extends Fragment {
-//
-//        public VoteFragment() {
-//        }
-//
-//        // Returns a new instance of this fragment for the given section number
-//        public static VoteFragment newInstance(int sectionNumber) {
-//            VoteFragment fragment = new VoteFragment();
-//            Bundle args = new Bundle();
-//            fragment.setArguments(args);
-//            return fragment;
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                                 Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.watch_representative_layout, container, false);
-//
-//            LinearLayout rl = (LinearLayout) rootView.findViewById(R.id.lin_layout);
-//            rl.setBackgroundColor(this.rep.getColor());
-//
-//            TextView rep_name_text = (TextView) rootView.findViewById(R.id.name_text);
-//            rep_name_text.setText(this.rep.rep_name + " (" + this.rep.party + ")");
-//
-//            return rootView;
-//        }
-//    }
+    public static class VoteFragment extends Fragment {
+
+        public VoteFragment() {
+        }
+
+        // Returns a new instance of this fragment for the given section number
+        public static VoteFragment newInstance(int sectionNumber) {
+            VoteFragment fragment = new VoteFragment();
+            Bundle args = new Bundle();
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.vote_layout, container, false);
+
+            TextView county_text = (TextView) rootView.findViewById(R.id.county_text);
+            county_text.setText("Los Angeles County, CA");
+
+            return rootView;
+        }
+    }
 }
