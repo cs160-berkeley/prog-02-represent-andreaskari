@@ -1,4 +1,4 @@
-package com.example.andreaskarinam.represent;
+package com.example.andreaskarinam.mylibrary;
 
 import android.graphics.Color;
 
@@ -11,12 +11,12 @@ public class Representative {
     public static String REPUBLICAN_COLOR = "#E44A4A";
     public static String INDEPENDENT_COLOR = "#FFFFFF";
 
-    protected String rep_name;
-    protected String party;
-    protected String email;
-    protected String website;
-    protected String last_tweet;
-    protected String image_name;
+    public String rep_name;
+    public String party;
+    public String email;
+    public String website;
+    public String last_tweet;
+    public String image_name;
 
     public Representative(String name, String party, String email, String website, String tweet, String image) {
         this.rep_name = name;
