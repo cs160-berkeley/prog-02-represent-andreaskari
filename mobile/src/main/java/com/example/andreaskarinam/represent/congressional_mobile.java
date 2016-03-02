@@ -35,48 +35,21 @@ public class congressional_mobile extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+    // The {@link ViewPager} that will host the section contents.
     private ViewPager mViewPager;
-
-//    public static ArrayList<Representative> representatives = new ArrayList<Representative>();
+    public static int county_index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congressional_mobile);
 
-//        Representative boxer = new Representative(
-//                "Barbara Boxer",
-//                "D",
-//                "senator@boxer.senate.gov",
-//                "www.boxer.senate.gov/",
-//                "@SenatorMajLdr: McConnell says he wants the Senate working again. Now he's choosing politics over over of our most important obligations.",
-//                "Boxer.png"
-//        );
-//
-//        Representative feinstein = new Representative(
-//                "Diane Feinstein",
-//                "D",
-//                "senator@feinstein.senate.gov",
-//                "www.feinstein.senate.gov/",
-//                "Love seeing the new signage at the new Castle Mountains National Monument! #ProtectCADesert",
-//                "Feinstein.png"
-//        );
-//
-//        Representative mcclintock = new Representative(
-//                "Tom McClintock",
-//                "R",
-//                "representative@mcclintock.house.gov",
-//                "www.mcclintock.house.gov/",
-//                "S.J. Res. 22 - Disapproving the #EPA #WOTUS (Waters of the U.S.) Rule http://1.usa.gov/200QA5x",
-//                "McClintock.png"
-//        );
-//
-//        representatives.add(boxer);
-//        representatives.add(feinstein);
-//        representatives.add(mcclintock);
+        FakeData data = new FakeData();
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -109,7 +82,7 @@ public class congressional_mobile extends AppCompatActivity {
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
             FakeData data = new FakeData();
-            PlaceholderFragment fragment = new PlaceholderFragment(data, 1, sectionNumber);
+            PlaceholderFragment fragment = new PlaceholderFragment(data, congressional_mobile.county_index, sectionNumber);
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
