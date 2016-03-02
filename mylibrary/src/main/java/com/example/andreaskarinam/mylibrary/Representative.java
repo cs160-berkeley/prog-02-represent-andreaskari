@@ -17,14 +17,20 @@ public class Representative {
     public String website;
     public String last_tweet;
     public String image_name;
+    public String term_string;
+    public String committees;
+    public String bills;
 
-    public Representative(String name, String party, String email, String website, String tweet, String image) {
+    public Representative(String name, String party, String email, String website, String tweet, String image, String term, String committees, String bills) {
         this.rep_name = name;
         this.party = party;
         this.email = email;
         this.website = website;
         this.last_tweet = tweet;
         this.image_name = image;
+        this.term_string = term;
+        this.committees = committees;
+        this.bills = bills;
     }
 
     public int getColor() {

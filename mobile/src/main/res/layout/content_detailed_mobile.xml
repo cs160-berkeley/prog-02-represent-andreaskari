@@ -103,6 +103,7 @@
             android:id="@+id/committees_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
+            android:paddingBottom="20dp"
             android:textSize="18dp"
             android:textColor="#000000" />
 

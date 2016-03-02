@@ -44,18 +44,29 @@ public class detailed_mobile extends AppCompatActivity {
         GradientDrawable party_circle = (GradientDrawable) lineColorCode.getBackground();
         party_circle.setColor(representative.getColor());
 
-        TextView rep_email_text = (TextView) findViewById(R.id.party_text);
+        TextView party_text = (TextView) findViewById(R.id.party_text);
         if (representative.party.equals("D")) {
-            rep_email_text.setText("Democratic Party");
+            party_text.setText("Democratic Party");
         } else {
-            rep_email_text.setText("Republican Party");
+            party_text.setText("Republican Party");
         }
+
+        TextView term_text = (TextView) findViewById(R.id.term_text);
+        term_text.setText(representative.term_string);
+
+        TextView committees_text = (TextView) findViewById(R.id.committees_text);
+        committees_text.setText(representative.committees);
+
+        TextView bills_text = (TextView) findViewById(R.id.bills_text);
+        bills_text.setText(representative.bills);
 
         ImageView rep_image = (ImageView) findViewById(R.id.rep_image);
         if (representative.rep_name.equals("Barbara Boxer")) {
             rep_image.setImageResource(R.drawable.boxer);
         } else if (representative.rep_name.equals("Diane Feinstein")) {
             rep_image.setImageResource(R.drawable.feinstein);
+        } else if (representative.rep_name.equals("Barbara Lee")) {
+            rep_image.setImageResource(R.drawable.lee);
         } else {
             rep_image.setImageResource(R.drawable.mcclintock);
         }

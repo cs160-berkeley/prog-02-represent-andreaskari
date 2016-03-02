@@ -141,6 +141,8 @@ public class congressional_mobile extends AppCompatActivity {
                 rep_image.setImageResource(R.drawable.boxer);
             } else if (this.representative.rep_name.equals("Diane Feinstein")) {
                 rep_image.setImageResource(R.drawable.feinstein);
+            } else if (representative.rep_name.equals("Barbara Lee")) {
+                rep_image.setImageResource(R.drawable.lee);
             } else {
                 rep_image.setImageResource(R.drawable.mcclintock);
             }
