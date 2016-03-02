@@ -67,6 +67,12 @@ public class detailed_mobile extends AppCompatActivity {
             rep_image.setImageResource(R.drawable.feinstein);
         } else if (representative.rep_name.equals("Barbara Lee")) {
             rep_image.setImageResource(R.drawable.lee);
+        } else if (representative.rep_name.equals("Tom Udall")) {
+            rep_image.setImageResource(R.drawable.udall);
+        } else if (representative.rep_name.equals("Martin Heinrich")) {
+            rep_image.setImageResource(R.drawable.heinrich);
+        } else if (representative.rep_name.equals("Stevan Pearce")) {
+            rep_image.setImageResource(R.drawable.pearce);
         } else {
             rep_image.setImageResource(R.drawable.mcclintock);
         }

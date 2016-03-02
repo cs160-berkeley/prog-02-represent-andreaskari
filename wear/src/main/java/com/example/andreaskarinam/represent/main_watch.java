@@ -47,15 +47,6 @@ public class main_watch extends Activity {
 
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
         pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
-
-//        pager.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-//                intent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, )
-//                startService(sendIntent);
-//            }
-//        });
     }
 
     public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
@@ -78,7 +69,6 @@ public class main_watch extends Activity {
         public Fragment getFragment(int row, int col) {
             Fragment fragment = vote_fragment;
             if (row < county.representatives.size()) {
-//                Representative rep = county.representatives.get(row);
                 fragment = new RepresentativeFragment(row);
             }
 

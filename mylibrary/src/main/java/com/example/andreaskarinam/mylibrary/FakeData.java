@@ -13,9 +13,6 @@ public class FakeData {
     public ArrayList<County> counties;
 
     public FakeData() {
-        ArrayList<Representative> berkeley_reps = new ArrayList<Representative>(3);
-        ArrayList<Representative> los_angeles_reps = new ArrayList<Representative>(3);
-
         String committees = "Subcommittee on Clean Air and Nuclear Safety\n" +
                 "\n" +
                 "Subcommittee on Superfund, Waste Management, and Regulatory Oversight\n" +
@@ -80,6 +77,46 @@ public class FakeData {
                 bills
         );
 
+        Representative udall = new Representative(
+                "Tom Udall",
+                "D",
+                "representative@udall.house.gov",
+                "www.udall.house.gov/",
+                "The FEC has outlived its usefulness—we need a new watchdog empowered to crack down on #campaignfinance violations: 1.usa.gov/1REyPEY",
+                "Udall.png",
+                "Ends term January 3, 2021",
+                committees,
+                bills
+        );
+
+        Representative heinrich = new Representative(
+                "Martin Heinrich",
+                "D",
+                "representative@heinrich.house.gov",
+                "www.heinrich.house.gov/",
+                "Women have made enormous contributions to our country & we must continue our fight for gender equality. #WomensHistoryMonth #EqualPay",
+                "Heinrich.png",
+                "Ends term January 3, 2019",
+                committees,
+                bills
+        );
+
+        Representative pearce = new Representative(
+                "Stevan Pearce",
+                "R",
+                "representative@pierce.house.gov",
+                "www.pierce.house.gov/",
+                "Thanks @RepLarryBucshon for introducing a bipartisan bill to strengthen Medicaid!",
+                "Pierce.png",
+                "Ends term January 3, 2017",
+                committees,
+                bills
+        );
+
+        ArrayList<Representative> berkeley_reps = new ArrayList<Representative>(3);
+        ArrayList<Representative> los_angeles_reps = new ArrayList<Representative>(3);
+        ArrayList<Representative> socorro_reps = new ArrayList<Representative>(3);
+
         berkeley_reps.add(boxer);
         berkeley_reps.add(feinstein);
         berkeley_reps.add(lee);
@@ -88,11 +125,17 @@ public class FakeData {
         los_angeles_reps.add(feinstein);
         los_angeles_reps.add(mcclintock);
 
+        socorro_reps.add(udall);
+        socorro_reps.add(heinrich);
+        socorro_reps.add(pearce);
+
         County berkeley = new County("Alameda County, CA", berkeley_reps, 65);
         County los_angeles = new County("Los Angeles County, CA", los_angeles_reps, 55);
+        County socorro = new County("Socorro County, NM", socorro_reps, 50);
 
-        counties = new ArrayList<County>(2);
+        counties = new ArrayList<County>(3);
         counties.add(berkeley);
         counties.add(los_angeles);
+        counties.add(socorro);
     }
 }
