@@ -17,20 +17,12 @@ public class PhoneListenerService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-        Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
-        System.out.println("Received message from watch");
         if (messageEvent.getPath().equalsIgnoreCase(FakeData.MESSAGE)) {
-            System.out.println("Received important message from watch");
 
             String indices_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             String[] indices = indices_string.split(" ");
-            System.out.println("Decoding message" + indices_string);
-            System.out.println(indices[0]);
-            System.out.println(indices[1]);
             int county_index = Integer.parseInt(indices[0]);
-            System.out.println(county_index);
             int representative_index = Integer.parseInt(indices[1]);
-            System.out.println(representative_index);
 
             Intent intent = new Intent(this, detailed_mobile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -42,6 +34,16 @@ public class PhoneListenerService extends WearableListenerService {
             //''sending message to a Handler on a dead thread''... that's okay. but don't do this.
             // replace sending a toast with, like, starting a new activity or something.
             // who said skeleton code is untouchable? #breakCSconceptions
+
+        } else if (messageEvent.getPath().equalsIgnoreCase(FakeData.COUNTY_INDEX_KEY)) {
+
+            String index_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            int county_index = Integer.parseInt(index_string);
+
+            Intent intent = new Intent(this, congressional_mobile.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
+            startActivity(intent);
 
         } else {
             super.onMessageReceived(messageEvent);

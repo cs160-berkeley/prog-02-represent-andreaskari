@@ -6,6 +6,8 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.wearable.view.CardFragment;
 import android.support.wearable.view.FragmentGridPagerAdapter;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.andreaskarinam.mylibrary.County;
@@ -27,10 +30,11 @@ import java.util.List;
 
 public class main_watch extends Activity {
 
+    private SensorManager mSensorManager;
+    private ShakeEventListener mSensorListener;
+
     public static int county_index;
     public static County county;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,36 @@ public class main_watch extends Activity {
 
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
         pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorListener = new ShakeEventListener();
+
+        mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
+
+            public void onShake() {
+                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, 2);
+                startService(sendIntent);
+
+                Intent watchIntent = new Intent(getBaseContext(), main_watch.class);
+                watchIntent.putExtra(FakeData.COUNTY_INDEX_KEY, 2);
+                startActivity(watchIntent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(mSensorListener,
+                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause() {
+        mSensorManager.unregisterListener(mSensorListener);
+        super.onPause();
     }
 
     public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
@@ -71,12 +105,6 @@ public class main_watch extends Activity {
             if (row < county.representatives.size()) {
                 fragment = new RepresentativeFragment(row);
             }
-
-            // Advanced settings (card gravity, card expansion/scrolling)
-//            fragment.setCardGravity(page.cardGravity);
-//            fragment.setExpansionEnabled(page.expansionEnabled);
-//            fragment.setExpansionDirection(page.expansionDirection);
-//            fragment.setExpansionFactor(page.expansionFactor);
             return fragment;
         }
 
@@ -123,8 +151,6 @@ public class main_watch extends Activity {
             rl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Context current_activity = getActivity().getBaseContext();
-                    // getBaseContext()
                     Intent sendIntent = new Intent(getActivity(), WatchToPhoneService.class);
                     sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
                     sendIntent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_number);
@@ -156,6 +182,15 @@ public class main_watch extends Activity {
 
             TextView county_text = (TextView) rootView.findViewById(R.id.county_text);
             county_text.setText(county.county_name);
+
+            TextView romney_percent_text = (TextView) rootView.findViewById(R.id.romney_percent_text);
+            romney_percent_text.setText(county.percent_romney + "%");
+
+            TextView obama_percent_text = (TextView) rootView.findViewById(R.id.obama_percent_text);
+            obama_percent_text.setText(county.percent_obama + "%");
+
+            ProgressBar progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+            progressBar.setProgress(county.percent_romney);
 
             return rootView;
         }

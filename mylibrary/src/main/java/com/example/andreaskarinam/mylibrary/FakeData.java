@@ -129,9 +129,9 @@ public class FakeData {
         socorro_reps.add(heinrich);
         socorro_reps.add(pearce);
 
-        County berkeley = new County("Alameda County, CA", berkeley_reps, 65);
+        County berkeley = new County("Alameda County, CA", berkeley_reps, 60);
         County los_angeles = new County("Los Angeles County, CA", los_angeles_reps, 55);
-        County socorro = new County("Socorro County, NM", socorro_reps, 50);
+        County socorro = new County("Socorro County, NM", socorro_reps, 40);
 
         counties = new ArrayList<County>(3);
         counties.add(berkeley);

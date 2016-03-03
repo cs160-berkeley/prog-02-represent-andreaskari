@@ -37,8 +37,8 @@
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/progressBar"
             android:layout_gravity="center_horizontal"
             android:progress="55"
@@ -46,30 +46,28 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="55%"
             android:textSize="30dp"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:id="@+id/romney_percent_text"
             android:layout_alignParentTop="true"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"
+            android:layout_gravity="center"
             android:paddingLeft="5dp"
             android:textColor="#FFFFFF"
             android:singleLine="true" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="45%"
             android:textSize="30dp"
-            android:gravity="right"
+            android:gravity="right|center_vertical"
             android:id="@+id/obama_percent_text"
             android:layout_alignParentTop="true"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"
+            android:layout_gravity="center"
             android:paddingRight="5dp"
             android:textColor="#FFFFFF" />
 

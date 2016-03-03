@@ -59,15 +59,29 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
-        representative_index = intent.getIntExtra(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
+        if (intent.hasExtra(FakeData.REPRESENTATIVE_INDEX_KEY)) {
+            representative_index = intent.getIntExtra(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mWatchApiClient.connect();
-                sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
-            }
-        }).start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mWatchApiClient.connect();
+                    sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
+                }
+            }).start();
+
+        } else {
+
+            System.out.println("Received shake");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mWatchApiClient.connect();
+                    sendMessage(FakeData.COUNTY_INDEX_KEY, "" + county_index);
+                }
+            }).start();
+
+        }
 
         return START_STICKY;
     }
