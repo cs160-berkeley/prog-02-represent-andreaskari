@@ -97,16 +97,28 @@
             android:background="#2F80ED" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/large_text"
             android:id="@+id/committees_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:paddingBottom="20dp"
             android:textSize="18dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:background="#F0F8FF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/blank_area"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18dp"
+            android:background="#FFFFFF" />
 
         <TextView
             android:layout_width="match_parent"
@@ -123,15 +135,19 @@
             android:background="#2F80ED" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/large_text"
             android:id="@+id/bills_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
             android:textSize="18dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:background="#F0F8FF" />
 
     </LinearLayout>
 
