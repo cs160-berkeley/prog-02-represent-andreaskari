@@ -31,6 +31,7 @@ public class FakeData {
 
         Representative boxer = new Representative(
                 "Barbara Boxer",
+                "Senator",
                 "D",
                 "senator@boxer.senate.gov",
                 "www.boxer.senate.gov/",
@@ -43,6 +44,7 @@ public class FakeData {
 
         Representative feinstein = new Representative(
                 "Diane Feinstein",
+                "Senator",
                 "D",
                 "senator@feinstein.senate.gov",
                 "www.feinstein.senate.gov/",
@@ -55,6 +57,7 @@ public class FakeData {
 
         Representative lee = new Representative(
                 "Barbara Lee",
+                "Representative",
                 "D",
                 "representative@lee.house.gov",
                 "www.lee.house.gov/",
@@ -67,6 +70,7 @@ public class FakeData {
 
         Representative mcclintock = new Representative(
                 "Tom McClintock",
+                "Representative",
                 "R",
                 "representative@mcclintock.house.gov",
                 "www.mcclintock.house.gov/",
@@ -79,6 +83,7 @@ public class FakeData {
 
         Representative udall = new Representative(
                 "Tom Udall",
+                "Senator",
                 "D",
                 "representative@udall.house.gov",
                 "www.udall.house.gov/",
@@ -91,6 +96,7 @@ public class FakeData {
 
         Representative heinrich = new Representative(
                 "Martin Heinrich",
+                "Senator",
                 "D",
                 "representative@heinrich.house.gov",
                 "www.heinrich.house.gov/",
@@ -103,6 +109,7 @@ public class FakeData {
 
         Representative pearce = new Representative(
                 "Stevan Pearce",
+                "Representative",
                 "R",
                 "representative@pierce.house.gov",
                 "www.pierce.house.gov/",

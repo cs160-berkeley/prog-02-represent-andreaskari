@@ -146,7 +146,8 @@ public class main_watch extends Activity {
             rl.setBackgroundColor(this.representative.getColor());
 
             TextView rep_name_text = (TextView) rootView.findViewById(R.id.name_text);
-            rep_name_text.setText(this.representative.rep_name + " (" + this.representative.party + ")");
+            rep_name_text.setText(this.representative.title + "\n" +  this.representative.rep_name
+                    + " (" + this.representative.party + ")");
 
             rl.setOnClickListener(new View.OnClickListener() {
                 @Override

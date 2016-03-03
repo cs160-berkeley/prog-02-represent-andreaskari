@@ -44,6 +44,8 @@ public class congressional_mobile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congressional_mobile);
 
+        setTitle("Represent");
+
         FakeData data = new FakeData();
 
         Intent intent = getIntent();
@@ -98,7 +100,8 @@ public class congressional_mobile extends AppCompatActivity {
             rl.setBackgroundColor(this.representative.getColor());
 
             TextView rep_name_text = (TextView) rootView.findViewById(R.id.name_text);
-            rep_name_text.setText(this.representative.rep_name + " (" + this.representative.party + ")");
+            rep_name_text.setText(this.representative.title.substring(0,3) + ". " +
+                    this.representative.rep_name + " (" + this.representative.party + ")");
 
             TextView rep_email_text = (TextView) rootView.findViewById(R.id.email_text);
             rep_email_text.setText(this.representative.email);

@@ -38,7 +38,7 @@ public class detailed_mobile extends AppCompatActivity {
         Representative representative = county.representatives.get(representative_index);
 
         TextView rep_name_text = (TextView) findViewById(R.id.name_text);
-        rep_name_text.setText(representative.rep_name);
+        rep_name_text.setText(representative.title + "\n" + representative.rep_name);
 
         ImageView lineColorCode = (ImageView) findViewById(R.id.party_image);
         GradientDrawable party_circle = (GradientDrawable) lineColorCode.getBackground();

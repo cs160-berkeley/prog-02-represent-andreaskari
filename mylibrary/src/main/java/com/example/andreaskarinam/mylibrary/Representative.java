@@ -12,6 +12,7 @@ public class Representative {
     public static String INDEPENDENT_COLOR = "#FFFFFF";
 
     public String rep_name;
+    public String title;
     public String party;
     public String email;
     public String website;
@@ -21,8 +22,9 @@ public class Representative {
     public String committees;
     public String bills;
 
-    public Representative(String name, String party, String email, String website, String tweet, String image, String term, String committees, String bills) {
+    public Representative(String name, String title, String party, String email, String website, String tweet, String image, String term, String committees, String bills) {
         this.rep_name = name;
+        this.title = title;
         this.party = party;
         this.email = email;
         this.website = website;
