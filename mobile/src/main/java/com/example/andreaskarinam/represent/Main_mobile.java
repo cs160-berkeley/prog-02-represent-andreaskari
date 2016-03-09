@@ -82,7 +82,7 @@ public class Main_mobile extends AppCompatActivity implements
 
     public void switch_to_congressional_view(View view) {
         String message = "/Latitude and Longitude";
-        String message_contents = mLatitudeText + " " + mLongitudeText;
+        String[] message_contents = {mLatitudeText, mLongitudeText};
         System.out.println(message_contents);
 
         Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
