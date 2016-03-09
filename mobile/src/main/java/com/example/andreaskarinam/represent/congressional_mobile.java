@@ -1,7 +1,9 @@
 package com.example.andreaskarinam.represent;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -33,6 +35,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,7 +67,8 @@ public class congressional_mobile extends AppCompatActivity {
     // The {@link ViewPager} that will host the section contents.
     private ViewPager mViewPager;
     public static int county_index;
-    public static String output;
+    public static JSONObject currentJSON;
+    public static JSONArray repJSONArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +77,6 @@ public class congressional_mobile extends AppCompatActivity {
 
         setTitle("Represent");
 
-        FakeData data = new FakeData();
-
         Intent intent = getIntent();
         String api_call = "";
         if (intent != null) {
@@ -82,6 +84,7 @@ public class congressional_mobile extends AppCompatActivity {
             String zipcode_message = "/Zipcode";
             if (intent.hasExtra(lat_long_message)) {
                 String[] lat_long = intent.getStringArrayExtra(lat_long_message);
+                System.out.println(lat_long);
                 try {
                     api_call = "http://congress.api.sunlightfoundation.com/legislators/locate?latitude="
                             + URLEncoder.encode(lat_long[0], "UTF-8") + "&longitude="
@@ -92,6 +95,7 @@ public class congressional_mobile extends AppCompatActivity {
                 }
             } else if (intent.hasExtra(zipcode_message)) {
                 String zipcode = intent.getStringExtra(zipcode_message);
+                System.out.println(zipcode);
                 try {
                     api_call = "http://congress.api.sunlightfoundation.com/legislators/locate?zip="
                             + URLEncoder.encode(zipcode, "UTF-8")
@@ -100,11 +104,29 @@ public class congressional_mobile extends AppCompatActivity {
                     System.out.println("Can't encode api call");
                 }
             }
-//            api_call = "http://congress.api.sunlightfoundation.com/legislators/locate?latitude=42.96000&longitude=-108.09&apikey=47a2503bbd494437916cc6acfbdf80fe";
             county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
         }
 
         new DownloadTask().execute(api_call);
+
+        while (currentJSON == null) {
+
+        }
+
+        try {
+            repJSONArray = currentJSON.getJSONArray("results");
+            currentJSON = null;
+            for (int i = 0; i < repJSONArray.length(); i++) {
+                JSONObject repJSON = repJSONArray.getJSONObject(i);
+                String first_name = repJSON.getString("first_name");
+                String middle_name = repJSON.getString("middle_name");
+                String last_name = repJSON.getString("last_name");
+
+                System.out.println(first_name + " " + middle_name + " " + last_name);
+            }
+        } catch (JSONException ex) {
+            System.out.println("Can't get repJSON Object");
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -133,8 +155,7 @@ public class congressional_mobile extends AppCompatActivity {
                     HttpEntity entity = response.getEntity();
                     String data = EntityUtils.toString(entity);
 
-
-                    JSONObject jsono = new JSONObject(data);
+                    currentJSON = new JSONObject(data);
 
                     return data;
                 }
@@ -143,7 +164,6 @@ public class congressional_mobile extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
-
                 e.printStackTrace();
             }
             return "Failure";
@@ -152,66 +172,74 @@ public class congressional_mobile extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             //Here you are done with the task
-            Toast.makeText(congressional_mobile.this, result, Toast.LENGTH_LONG).show();
-            output = result;
+//            Toast.makeText(congressional_mobile.this, result, Toast.LENGTH_LONG).show();
         }
     }
-
-    private String downloadContent(String myurl) throws IOException {
-        InputStream is = null;
-        int length = 500;
-
-        try {
-            URL url = new URL(myurl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("GET");
-            conn.setDoInput(true);
-            conn.connect();
-            int response = conn.getResponseCode();
-            is = conn.getInputStream();
-
-            // Convert the InputStream into a string
-            String contentAsString = convertInputStreamToString(is, length);
-            return contentAsString;
-        } finally {
-            if (is != null) {
-                is.close();
-            }
-        }
-    }
-
-    public String convertInputStreamToString(InputStream stream, int length) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[length];
-        reader.read(buffer);
-        return new String(buffer);
-    }
-
 
     /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
 
+        public static String DEMOCRAT_COLOR = "#2F80ED";
+        public static String REPUBLICAN_COLOR = "#E44A4A";
+        public static String INDEPENDENT_COLOR = "#FFFFFF";
+
         private static final String ARG_SECTION_NUMBER = "section_number";
         private int county_index;
-        private int representative_index;
+//        private int representative_index;
         private County county;
         private Representative representative;
 
-        public PlaceholderFragment(FakeData data, int county_index, int rep_index) {
-            this.county_index = county_index;
-            this.representative_index = rep_index;
-            this.county = data.counties.get(county_index);
-            this.representative = county.representatives.get(rep_index);
+        private int zipcode;
+        private int latitude;
+        private int longitude;
+        private int representative_index;
+
+        private String title;
+        private String full_name;
+        private String email;
+        private String website;
+        private String party;
+
+        public PlaceholderFragment(int index) {
+//            this.county_index = county_index;
+//            this.representative_index = rep_index;
+//            this.county = data.counties.get(county_index);
+//            this.representative = county.representatives.get(rep_index);
+
+            this.representative_index = index;
+            try {
+                JSONObject repJSON = repJSONArray.getJSONObject(index);
+                String first_name = repJSON.getString("first_name");
+                String middle_name = repJSON.getString("middle_name");
+                String last_name = repJSON.getString("last_name");
+                this.title = repJSON.getString("title");
+                this.full_name = first_name + " " + last_name;
+                if (!middle_name.equals("null")) {
+                    this.full_name = first_name + " " + middle_name + " " + last_name;
+                }
+                this.email = repJSON.getString("oc_email");
+                this.website = repJSON.getString("website");
+                this.party = repJSON.getString("party");
+            } catch (JSONException ex) {
+                System.out.println("Error retrieving candidate JSON data");
+            }
+        }
+
+        public int getColor() {
+            if (this.party.equals("D")) {
+                return Color.parseColor(DEMOCRAT_COLOR);
+            } else if (this.party.equals("R")) {
+                return Color.parseColor(REPUBLICAN_COLOR);
+            }
+            return Color.parseColor(INDEPENDENT_COLOR);
         }
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
-            FakeData data = new FakeData();
-            PlaceholderFragment fragment = new PlaceholderFragment(data, congressional_mobile.county_index, sectionNumber);
+//            FakeData data = new FakeData();
+//            PlaceholderFragment fragment = new PlaceholderFragment(data, congressional_mobile.county_index, sectionNumber);
+            PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber);
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
@@ -223,23 +251,22 @@ public class congressional_mobile extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_congressional_mobile, container, false);
 
-//            LinearLayout rl = (LinearLayout) rootView.findViewById(R.id.lin_layout);
-//            rl.setBackgroundColor(this.representative.getColor());
-//
-//            TextView rep_name_text = (TextView) rootView.findViewById(R.id.name_text);
-//            rep_name_text.setText(this.representative.title.substring(0,3) + ". " +
-//                    this.representative.rep_name + " (" + this.representative.party + ")");
-//
-//            TextView rep_email_text = (TextView) rootView.findViewById(R.id.email_text);
-//            rep_email_text.setText(this.representative.email);
-//
-//            TextView rep_website_text = (TextView) rootView.findViewById(R.id.website_text);
-//            rep_website_text.setText(this.representative.website);
-//
-//            TextView rep_tweet_text = (TextView) rootView.findViewById(R.id.tweet_content_text);
+            LinearLayout rl = (LinearLayout) rootView.findViewById(R.id.lin_layout);
+            rl.setBackgroundColor(this.getColor());
+
+            TextView rep_name_text = (TextView) rootView.findViewById(R.id.name_text);
+            rep_name_text.setText(this.title + ". " + this.full_name + " (" + this.party + ")");
+
+            TextView rep_email_text = (TextView) rootView.findViewById(R.id.email_text);
+            rep_email_text.setText(this.email);
+
+            TextView rep_website_text = (TextView) rootView.findViewById(R.id.website_text);
+            rep_website_text.setText(this.website);
+
+            TextView rep_tweet_text = (TextView) rootView.findViewById(R.id.tweet_content_text);
 //            rep_tweet_text.setText(this.representative.last_tweet);
-//
-//            ImageView rep_image = (ImageView) rootView.findViewById(R.id.rep_image);
+
+            ImageView rep_image = (ImageView) rootView.findViewById(R.id.rep_image);
 //            if (representative.rep_name.equals("Barbara Boxer")) {
 //                rep_image.setImageResource(R.drawable.boxer);
 //            } else if (representative.rep_name.equals("Diane Feinstein")) {
@@ -256,17 +283,17 @@ public class congressional_mobile extends AppCompatActivity {
 //                rep_image.setImageResource(R.drawable.mcclintock);
 //            }
 //
-//            rep_image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent intent = new Intent(getActivity(), detailed_mobile.class);
-//
-//                    intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
-//                    intent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_index);
-//
-//                    startActivity(intent);
-//                }
-//            });
+            rep_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), detailed_mobile.class);
+
+                    intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
+                    intent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_index);
+
+                    startActivity(intent);
+                }
+            });
 
             return rootView;
         }
