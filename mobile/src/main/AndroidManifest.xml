@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.andreaskarinam.represent">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +26,10 @@
             android:name=".detailed_mobile"
             android:label="@string/title_activity_detailed_mobile"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCSVTJNysGxWh_lPFeHukDBHe7-4CX4uEY"/>
 
         <service android:name=".PhoneToWatchService" />
         <service android:name=".PhoneListenerService"
