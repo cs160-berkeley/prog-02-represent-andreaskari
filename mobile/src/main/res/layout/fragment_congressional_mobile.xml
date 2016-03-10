@@ -56,7 +56,7 @@
             android:id="@+id/website_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:textSize="18dp"
             android:textColor="#ffffff" />
 
@@ -86,14 +86,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Here is an abolutely massive tweet that takes up the entire screen and will probably need to be scrolled through"
+                android:text="MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
                 android:id="@+id/tweet_content_text"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:textSize="20dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:textSize="16dp"
                 android:background="#ffffff"
                 android:textColor="#000000" />
 
