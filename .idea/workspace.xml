@@ -44,7 +44,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2b4f0860-ca7d-4977-88bd-cf4acd599144" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_congressional_mobile.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_congressional_mobile.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Represent.iws" />
@@ -66,14 +66,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="congressional_mobile.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="congressional_mobile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33563218">
-              <caret line="117" column="24" selection-start-line="117" selection-start-column="24" selection-end-line="117" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="210" column="66" selection-start-line="207" selection-start-column="16" selection-end-line="210" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detailed_mobile.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.44827586">
+              <caret line="104" column="27" selection-start-line="104" selection-start-column="27" selection-end-line="104" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -3584,7 +3594,6 @@
         <option value="$PROJECT_DIR$/mylibrary/src/main/java/com/example/andreaskarinam/mylibrary/Representative.java" />
         <option value="$PROJECT_DIR$/mylibrary/src/main/java/com/example/andreaskarinam/mylibrary/FakeData.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/main_watch.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/content_detailed_mobile.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/watch_representative_layout.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_zipcode_mobile.xml" />
@@ -3592,8 +3601,9 @@
         <option value="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java" />
         <option value="$PROJECT_DIR$/mobile/build.gradle" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_congressional_mobile.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" />
       </list>
     </option>
   </component>
@@ -3795,6 +3805,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/andreaskarinam/Developer/AndroidStudioProjects/Represent/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -4391,13 +4402,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/main_watch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5808656">
@@ -4422,6 +4426,7 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4466,14 +4471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_congressional_mobile.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -4509,13 +4506,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7241379">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33563218">
-          <caret line="117" column="24" selection-start-line="117" selection-start-column="24" selection-end-line="117" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="210" column="66" selection-start-line="207" selection-start-column="16" selection-end-line="210" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44827586">
+          <caret line="104" column="27" selection-start-line="104" selection-start-column="27" selection-end-line="104" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

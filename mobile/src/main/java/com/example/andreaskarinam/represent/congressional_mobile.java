@@ -110,23 +110,15 @@ public class congressional_mobile extends AppCompatActivity {
         new DownloadTask().execute(api_call);
 
         while (currentJSON == null) {
-
+            // make progress bar?
         }
 
         try {
             repJSONArray = currentJSON.getJSONArray("results");
-            currentJSON = null;
-            for (int i = 0; i < repJSONArray.length(); i++) {
-                JSONObject repJSON = repJSONArray.getJSONObject(i);
-                String first_name = repJSON.getString("first_name");
-                String middle_name = repJSON.getString("middle_name");
-                String last_name = repJSON.getString("last_name");
-
-                System.out.println(first_name + " " + middle_name + " " + last_name);
-            }
         } catch (JSONException ex) {
             System.out.println("Can't get repJSON Object");
         }
+        currentJSON = null;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -194,6 +186,8 @@ public class congressional_mobile extends AppCompatActivity {
         private int zipcode;
         private int latitude;
         private int longitude;
+        private String district;
+        private String bioguide_id;
         private int representative_index;
 
         private String title;
@@ -201,6 +195,7 @@ public class congressional_mobile extends AppCompatActivity {
         private String email;
         private String website;
         private String party;
+        private String term_end;
 
         public PlaceholderFragment(int index) {
 //            this.county_index = county_index;
@@ -222,6 +217,8 @@ public class congressional_mobile extends AppCompatActivity {
                 this.email = repJSON.getString("oc_email");
                 this.website = repJSON.getString("website");
                 this.party = repJSON.getString("party");
+                this.term_end = repJSON.getString("term_end");
+                this.bioguide_id = repJSON.getString("bioguide_id");
             } catch (JSONException ex) {
                 System.out.println("Error retrieving candidate JSON data");
             }
@@ -282,15 +279,21 @@ public class congressional_mobile extends AppCompatActivity {
 //            } else {
 //                rep_image.setImageResource(R.drawable.mcclintock);
 //            }
-//
+
+            final String bioguide_id = this.bioguide_id;
+            final String title = this.title;
+            final String full_name = this.full_name;
+            final String party = this.party;
+            final String term_end = this.term_end;
             rep_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), detailed_mobile.class);
-
-                    intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
-                    intent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_index);
-
+                    intent.putExtra("/Bioguide", bioguide_id);
+                    intent.putExtra("/Title", title);
+                    intent.putExtra("/Full_Name", full_name);
+                    intent.putExtra("/Party", party);
+                    intent.putExtra("/Term_End", term_end);
                     startActivity(intent);
                 }
             });
