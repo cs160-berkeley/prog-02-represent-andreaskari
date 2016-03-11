@@ -43,8 +43,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Email@representative.host"
             android:id="@+id/email_text"
+            android:autoLink="email"
+            android:textColorLink="#ffffff"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"
+            android:paddingTop="15dp"
             android:textSize="18dp"
             android:textColor="#ffffff" />
 
@@ -55,8 +57,10 @@
             android:text="www.representatives_website.host"
             android:id="@+id/website_text"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
+            android:autoLink="web"
+            android:textColorLink="#ffffff"
             android:textSize="18dp"
             android:textColor="#ffffff" />
 
