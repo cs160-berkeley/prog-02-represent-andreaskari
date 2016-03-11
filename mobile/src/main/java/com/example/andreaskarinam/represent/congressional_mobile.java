@@ -407,6 +407,7 @@ public class congressional_mobile extends AppCompatActivity {
             final String full_name = this.full_name;
             final String party = this.party;
             final String term_end = this.term_end;
+            final String profile_url = this.profile_image_URL;
             rep_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -416,6 +417,7 @@ public class congressional_mobile extends AppCompatActivity {
                     intent.putExtra("/Full_Name", full_name);
                     intent.putExtra("/Party", party);
                     intent.putExtra("/Term_End", term_end);
+                    intent.putExtra("/Profile URL", profile_url);
                     startActivity(intent);
                 }
             });

@@ -1,6 +1,8 @@
 package com.example.andreaskarinam.represent;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
@@ -10,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -48,6 +52,7 @@ public class detailed_mobile extends AppCompatActivity {
     private String full_name;
     private String party;
     private String term_end;
+    private String profile_url;
 
     public static JSONObject currentJSON;
 
@@ -67,6 +72,7 @@ public class detailed_mobile extends AppCompatActivity {
                 full_name = intent.getStringExtra("/Full_Name");
                 party = intent.getStringExtra("/Party");
                 term_end = intent.getStringExtra("/Term_End");
+                profile_url = intent.getStringExtra("/Profile URL");
                 System.out.println(bioguide_id);
                 try {
                     committees_api_call = "http://congress.api.sunlightfoundation.com/committees?member_ids="
@@ -165,21 +171,7 @@ public class detailed_mobile extends AppCompatActivity {
         bills_text.setText(bills_string);
 
         ImageView rep_image = (ImageView) findViewById(R.id.rep_image);
-//        if (representative.rep_name.equals("Barbara Boxer")) {
-//            rep_image.setImageResource(R.drawable.boxer);
-//        } else if (representative.rep_name.equals("Diane Feinstein")) {
-//            rep_image.setImageResource(R.drawable.feinstein);
-//        } else if (representative.rep_name.equals("Barbara Lee")) {
-//            rep_image.setImageResource(R.drawable.lee);
-//        } else if (representative.rep_name.equals("Tom Udall")) {
-//            rep_image.setImageResource(R.drawable.udall);
-//        } else if (representative.rep_name.equals("Martin Heinrich")) {
-//            rep_image.setImageResource(R.drawable.heinrich);
-//        } else if (representative.rep_name.equals("Stevan Pearce")) {
-//            rep_image.setImageResource(R.drawable.pearce);
-//        } else {
-//            rep_image.setImageResource(R.drawable.mcclintock);
-//        }
+        new DownloadImageTask(rep_image).execute(this.profile_url);
     }
 
     private int getColor() {
@@ -234,6 +226,30 @@ public class detailed_mobile extends AppCompatActivity {
         protected void onPostExecute(String result) {
             //Here you are done with the task
 //            Toast.makeText(congressional_mobile.this, result, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 }
