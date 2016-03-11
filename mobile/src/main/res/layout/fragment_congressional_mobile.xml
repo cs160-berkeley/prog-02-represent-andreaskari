@@ -92,10 +92,10 @@
                 xmlns:twittersdk="http://schemas.android.com/apk/res-auto">
 
                 <com.twitter.sdk.android.tweetui.TweetView
-                    android:id="@+id/bike_tweet"
+                    android:id="@+id/tweet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    twittersdk:tw__tweet_id="631879971628183552"/>
+                    twittersdk:tw__tweet_id="510908133917487104" />
 
             </FrameLayout>
 

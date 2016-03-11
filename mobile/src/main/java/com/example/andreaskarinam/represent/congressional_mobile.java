@@ -68,6 +68,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.core.models.User;
 import com.twitter.sdk.android.core.services.StatusesService;
+import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.TweetUtils;
 import com.twitter.sdk.android.tweetui.TweetView;
 
@@ -78,6 +79,7 @@ import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.User;
+import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -259,6 +261,7 @@ public class congressional_mobile extends AppCompatActivity {
 
     private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
+
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
@@ -278,6 +281,45 @@ public class congressional_mobile extends AppCompatActivity {
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+
+    private static class DownloadTweetTask extends AsyncTask<String, Void, Tweet> {
+        TweetView tweetView;
+        Tweet tweet;
+
+        public DownloadTweetTask(TweetView tweetView) {
+            this.tweetView = tweetView;
+        }
+
+        protected Tweet doInBackground(String... twitter_ids) {
+            String twitter_id = twitter_ids[0];
+            TwitterSession session = Twitter.getSessionManager().getActiveSession();
+            Twitter.getApiClient().getStatusesService().userTimeline(null, twitter_id, null, 1L, null, null, null, null, null, new Callback<List<Tweet>>() {
+                @Override
+                public void success(Result<List<Tweet>> tweets) {
+
+                    tweet = tweets.data.get(0);
+                    System.out.println(tweet.text);
+
+                }
+                @Override
+                public void failure(TwitterException e) {
+
+                }
+
+            });
+            System.out.println(tweet);
+            while (tweet == null) {
+
+            }
+            Tweet received = tweet;
+            tweet = null;
+            return received;
+        }
+
+        protected void onPostExecute(Tweet result) {
+            tweetView.setTweet(result);
         }
     }
 
@@ -310,6 +352,7 @@ public class congressional_mobile extends AppCompatActivity {
         private String party;
         private String term_end;
         private String twitter_id;
+        private Tweet tweet;
         private String profile_image_URL;
         private Bitmap profile_image;
 
@@ -325,40 +368,14 @@ public class congressional_mobile extends AppCompatActivity {
             this.bioguide_id = (String) data.get(index).get(6);
             this.twitter_id = (String) data.get(index).get(7);
             this.profile_image_URL = (String) data.get(index).get(8);
-//            try {
 
-//                JSONObject repJSON = repJSONArray.getJSONObject(index);
-//                String first_name = repJSON.getString("first_name");
-//                String middle_name = repJSON.getString("middle_name");
-//                String last_name = repJSON.getString("last_name");
-//                this.title = repJSON.getString("title");
-//                this.full_name = first_name + " " + last_name;
-//                if (!middle_name.equals("null")) {
-//                    this.full_name = first_name + " " + middle_name + " " + last_name;
-//                }
-//                this.email = repJSON.getString("oc_email");
-//                this.website = repJSON.getString("website");
-//                this.party = repJSON.getString("party");
-//                this.term_end = repJSON.getString("term_end");
-//                this.bioguide_id = repJSON.getString("bioguide_id");
-//                this.twitter_id = repJSON.getString("twitter_id");
-//                this.profile_image_URL = "https://github.com/unitedstates/images/blob/gh-pages/congress/450x550/"
-//                        + this.bioguide_id + ".jpg?raw=true";
-//                System.out.println(this.profile_image_URL);
-
-
-//                        "http://pbs.twimg.com/profile_images/2430574202/image_normal.jpg";
-
-
-
-//                TwitterSession session = Twitter.getSessionManager().getActiveSession();
-//                Twitter.getApiClient(session).getAccountService().verifyCredentials(true, false, new Callback<User>() {
+//            TwitterSession session = Twitter.getSessionManager().getActiveSession();
+//            Twitter.getApiClient().getStatusesService().userTimeline(null, this.twitter_id, null, 1L, null, null, null, null, null, new Callback<List<Tweet>>() {
 //                            @Override
-//                            public void success(Result<User> userResult) {
+//                            public void success(Result<List<Tweet>> tweets) {
 //
-//                                User user = userResult.data;
-//                                PlaceholderFragment.this.profile_image_URL = user.profileImageUrl;
-//                                System.out.println(PlaceholderFragment.this.profile_image_URL);
+//                                PlaceholderFragment.this.tweet = tweets.data.get(0);
+//                                System.out.println(PlaceholderFragment.this.tweet.text);
 //
 //                            }
 //                            @Override
@@ -367,10 +384,6 @@ public class congressional_mobile extends AppCompatActivity {
 //                            }
 //
 //                        });
-//
-//            } catch (JSONException ex) {
-//                System.out.println("Error retrieving candidate JSON data");
-//            }
         }
 
         public int getColor() {
@@ -408,31 +421,18 @@ public class congressional_mobile extends AppCompatActivity {
             TextView rep_website_text = (TextView) rootView.findViewById(R.id.website_text);
             rep_website_text.setText(this.website);
 
-//            TextView rep_tweet_text = (TextView) rootView.findViewById(R.id.tweet_content_text);
-//            rep_tweet_text.setText(this.representative.last_tweet);
-
-//            TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-//            Fabric.with(getActivity(), new Twitter(authConfig));
-
-//            // TODO: Use a more specific parent
-//            final ViewGroup parentView = (ViewGroup) getActivity().getWindow().getDecorView().getRootView();
-//            // TODO: Base this Tweet ID on some data from elsewhere in your app
-//            long tweetId = 631879971628183552L;
-//            TweetUtils.loadTweet(tweetId, new Callback<Tweet>() {
-//                @Override
-//                public void success(Result<Tweet> result) {
-//                    TweetView tweetView = new TweetView(getActivity(), result.data);
-//                    parentView.addView(tweetView);
-//                }
-//
-//                @Override
-//                public void failure(TwitterException exception) {
-//                    Log.d("TwitterKit", "Load Tweet failure", exception);
-//                }
-//            });
-
             ImageView rep_image = (ImageView) rootView.findViewById(R.id.rep_image);
             new DownloadImageTask(rep_image).execute(this.profile_image_URL);
+
+            TweetView tweet_view = (TweetView) rootView.findViewById(R.id.tweet);
+            System.out.println("A");
+            new DownloadTweetTask(tweet_view).execute(this.twitter_id);
+            System.out.println("B");
+//            System.out.println(this.tweet);
+//            tweetView.setTweet(this.tweet);
+
+//            TweetView tweet_view = (TweetView) rootView.findViewById(R.id.tweet_content_text);
+//            tweet.setText(this.tweet.text);
 
             final String bioguide_id = this.bioguide_id;
             final String title = this.title;
