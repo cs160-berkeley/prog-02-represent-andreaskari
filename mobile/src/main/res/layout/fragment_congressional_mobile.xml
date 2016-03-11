@@ -81,21 +81,43 @@
                 android:background="#000000"
                 android:textColor="#2F80ED" />
 
-            <TextView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|start"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:twittersdk="http://schemas.android.com/apk/res-auto">
+
+                <com.twitter.sdk.android.tweetui.TweetView
+                    android:id="@+id/bike_tweet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    twittersdk:tw__tweet_id="631879971628183552"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
-                android:id="@+id/tweet_content_text"
+                android:id="@+id/blank_area"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"
-                android:textSize="16dp"
-                android:background="#ffffff"
-                android:textColor="#000000" />
+                android:textSize="18dp" />
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center|start"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:text="MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"-->
+                <!--android:id="@+id/tweet_content_text"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingRight="15dp"-->
+                <!--android:paddingLeft="15dp"-->
+                <!--android:textSize="16dp"-->
+                <!--android:background="#ffffff"-->
+                <!--android:textColor="#000000" />-->
 
         </LinearLayout>
 

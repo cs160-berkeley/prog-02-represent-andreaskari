@@ -50,9 +50,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.tweetui.TweetUtils;
+import com.twitter.sdk.android.tweetui.TweetView;
 
+import io.fabric.sdk.android.Fabric;
 
 public class congressional_mobile extends AppCompatActivity {
+
+    private static final String TWITTER_KEY = "7sIEH0sd2ieymR8e9i9HV3BnE";
+    private static final String TWITTER_SECRET = "WhWUsVkDiLFTJCpM3wDwf2VsaxQ4GptKPogbBHA4mKPXykYlo2";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -196,6 +208,7 @@ public class congressional_mobile extends AppCompatActivity {
         private String website;
         private String party;
         private String term_end;
+        private String twitter_id;
 
         public PlaceholderFragment(int index) {
 //            this.county_index = county_index;
@@ -219,6 +232,7 @@ public class congressional_mobile extends AppCompatActivity {
                 this.party = repJSON.getString("party");
                 this.term_end = repJSON.getString("term_end");
                 this.bioguide_id = repJSON.getString("bioguide_id");
+                this.twitter_id = repJSON.getString("twitter_id");
             } catch (JSONException ex) {
                 System.out.println("Error retrieving candidate JSON data");
             }
@@ -260,8 +274,28 @@ public class congressional_mobile extends AppCompatActivity {
             TextView rep_website_text = (TextView) rootView.findViewById(R.id.website_text);
             rep_website_text.setText(this.website);
 
-            TextView rep_tweet_text = (TextView) rootView.findViewById(R.id.tweet_content_text);
+//            TextView rep_tweet_text = (TextView) rootView.findViewById(R.id.tweet_content_text);
 //            rep_tweet_text.setText(this.representative.last_tweet);
+
+            TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+            Fabric.with(getActivity(), new Twitter(authConfig));
+
+//            // TODO: Use a more specific parent
+//            final ViewGroup parentView = (ViewGroup) getActivity().getWindow().getDecorView().getRootView();
+//            // TODO: Base this Tweet ID on some data from elsewhere in your app
+//            long tweetId = 631879971628183552L;
+//            TweetUtils.loadTweet(tweetId, new Callback<Tweet>() {
+//                @Override
+//                public void success(Result<Tweet> result) {
+//                    TweetView tweetView = new TweetView(getActivity(), result.data);
+//                    parentView.addView(tweetView);
+//                }
+//
+//                @Override
+//                public void failure(TwitterException exception) {
+//                    Log.d("TwitterKit", "Load Tweet failure", exception);
+//                }
+//            });
 
             ImageView rep_image = (ImageView) rootView.findViewById(R.id.rep_image);
 //            if (representative.rep_name.equals("Barbara Boxer")) {
