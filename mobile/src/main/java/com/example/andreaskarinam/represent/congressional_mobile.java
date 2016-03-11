@@ -104,6 +104,8 @@ public class congressional_mobile extends AppCompatActivity {
     public static Bitmap currentBitmap;
     public static JSONArray repJSONArray;
 
+    public static ArrayList<ArrayList> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +151,30 @@ public class congressional_mobile extends AppCompatActivity {
 
         try {
             repJSONArray = currentJSON.getJSONArray("results");
+            data = new ArrayList<ArrayList>(repJSONArray.length());
+            for (int i = 0; i < repJSONArray.length(); i++) {
+                ArrayList<String> repData = new ArrayList<String>(repJSONArray.length());
+
+                JSONObject repJSON = repJSONArray.getJSONObject(i);
+                String first_name = repJSON.getString("first_name");
+                String middle_name = repJSON.getString("middle_name");
+                String last_name = repJSON.getString("last_name");
+                repData.add(repJSON.getString("title"));
+                if (!middle_name.equals("null")) {
+                    repData.add(first_name + " " + middle_name + " " + last_name);
+                } else {
+                    repData.add(first_name + " " + last_name);
+                }
+                repData.add(repJSON.getString("oc_email"));
+                repData.add(repJSON.getString("website"));
+                repData.add(repJSON.getString("party"));
+                repData.add(repJSON.getString("term_end"));
+                repData.add(repJSON.getString("bioguide_id"));
+                repData.add(repJSON.getString("twitter_id"));
+                repData.add("https://github.com/unitedstates/images/blob/gh-pages/congress/450x550/"
+                        + repData.get(6) + ".jpg?raw=true");
+                data.add(repData);
+            }
         } catch (JSONException ex) {
             System.out.println("Can't get repJSON Object");
         }
@@ -181,12 +207,6 @@ public class congressional_mobile extends AppCompatActivity {
 //            System.out.println("Can't encode api call");
 //        }
 
-//        new DownloadTask().execute(api_call2);
-//
-//        while (currentJSON == null) {
-//            // make progress bar?
-//        }
-//        System.out.println(currentJSON);
         currentJSON = null;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -296,25 +316,37 @@ public class congressional_mobile extends AppCompatActivity {
         public PlaceholderFragment(int index) {
 
             this.representative_index = index;
-            try {
-                JSONObject repJSON = repJSONArray.getJSONObject(index);
-                String first_name = repJSON.getString("first_name");
-                String middle_name = repJSON.getString("middle_name");
-                String last_name = repJSON.getString("last_name");
-                this.title = repJSON.getString("title");
-                this.full_name = first_name + " " + last_name;
-                if (!middle_name.equals("null")) {
-                    this.full_name = first_name + " " + middle_name + " " + last_name;
-                }
-                this.email = repJSON.getString("oc_email");
-                this.website = repJSON.getString("website");
-                this.party = repJSON.getString("party");
-                this.term_end = repJSON.getString("term_end");
-                this.bioguide_id = repJSON.getString("bioguide_id");
-                this.twitter_id = repJSON.getString("twitter_id");
-                this.profile_image_URL = "https://github.com/unitedstates/images/blob/gh-pages/congress/450x550/"
-                        + this.bioguide_id + ".jpg?raw=true";
-                System.out.println(this.profile_image_URL);
+            this.title = (String) data.get(index).get(0);
+            this.full_name = (String) data.get(index).get(1);
+            this.email = (String) data.get(index).get(2);
+            this.website = (String) data.get(index).get(3);
+            this.party = (String) data.get(index).get(4);
+            this.term_end = (String) data.get(index).get(5);
+            this.bioguide_id = (String) data.get(index).get(6);
+            this.twitter_id = (String) data.get(index).get(7);
+            this.profile_image_URL = (String) data.get(index).get(8);
+//            try {
+
+//                JSONObject repJSON = repJSONArray.getJSONObject(index);
+//                String first_name = repJSON.getString("first_name");
+//                String middle_name = repJSON.getString("middle_name");
+//                String last_name = repJSON.getString("last_name");
+//                this.title = repJSON.getString("title");
+//                this.full_name = first_name + " " + last_name;
+//                if (!middle_name.equals("null")) {
+//                    this.full_name = first_name + " " + middle_name + " " + last_name;
+//                }
+//                this.email = repJSON.getString("oc_email");
+//                this.website = repJSON.getString("website");
+//                this.party = repJSON.getString("party");
+//                this.term_end = repJSON.getString("term_end");
+//                this.bioguide_id = repJSON.getString("bioguide_id");
+//                this.twitter_id = repJSON.getString("twitter_id");
+//                this.profile_image_URL = "https://github.com/unitedstates/images/blob/gh-pages/congress/450x550/"
+//                        + this.bioguide_id + ".jpg?raw=true";
+//                System.out.println(this.profile_image_URL);
+
+
 //                        "http://pbs.twimg.com/profile_images/2430574202/image_normal.jpg";
 
 
@@ -335,10 +367,10 @@ public class congressional_mobile extends AppCompatActivity {
 //                            }
 //
 //                        });
-
-            } catch (JSONException ex) {
-                System.out.println("Error retrieving candidate JSON data");
-            }
+//
+//            } catch (JSONException ex) {
+//                System.out.println("Error retrieving candidate JSON data");
+//            }
         }
 
         public int getColor() {
