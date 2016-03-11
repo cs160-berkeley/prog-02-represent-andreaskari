@@ -182,35 +182,6 @@ public class congressional_mobile extends AppCompatActivity {
         }
         currentJSON = null;
 
-//        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-//        Fabric.with(this, new Twitter(authConfig));
-//
-//        TwitterSession session = Twitter.getSessionManager().getActiveSession();
-//        Twitter.getApiClient(session).getAccountService().verifyCredentials(true, false, new Callback<User>() {
-//            @Override
-//            public void success(Result<User> userResult) {
-//
-//                User user = userResult.data;
-//                System.out.println(user.profileImageUrl);
-//
-//            }
-//
-//            @Override
-//            public void failure(TwitterException e) {
-//
-//            }
-//        });
-
-//        String api_call2 = "";
-//        try {
-//            api_call2 = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="
-//                    + URLEncoder.encode("SenatorBoxer", "UTF-8") + "&count=1";
-//        } catch (UnsupportedEncodingException ex) {
-//            System.out.println("Can't encode api call");
-//        }
-
-        currentJSON = null;
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -368,22 +339,6 @@ public class congressional_mobile extends AppCompatActivity {
             this.bioguide_id = (String) data.get(index).get(6);
             this.twitter_id = (String) data.get(index).get(7);
             this.profile_image_URL = (String) data.get(index).get(8);
-
-//            TwitterSession session = Twitter.getSessionManager().getActiveSession();
-//            Twitter.getApiClient().getStatusesService().userTimeline(null, this.twitter_id, null, 1L, null, null, null, null, null, new Callback<List<Tweet>>() {
-//                            @Override
-//                            public void success(Result<List<Tweet>> tweets) {
-//
-//                                PlaceholderFragment.this.tweet = tweets.data.get(0);
-//                                System.out.println(PlaceholderFragment.this.tweet.text);
-//
-//                            }
-//                            @Override
-//                            public void failure(TwitterException e) {
-//
-//                            }
-//
-//                        });
         }
 
         public int getColor() {
@@ -425,14 +380,7 @@ public class congressional_mobile extends AppCompatActivity {
             new DownloadImageTask(rep_image).execute(this.profile_image_URL);
 
             TweetView tweet_view = (TweetView) rootView.findViewById(R.id.tweet);
-            System.out.println("A");
             new DownloadTweetTask(tweet_view).execute(this.twitter_id);
-            System.out.println("B");
-//            System.out.println(this.tweet);
-//            tweetView.setTweet(this.tweet);
-
-//            TweetView tweet_view = (TweetView) rootView.findViewById(R.id.tweet_content_text);
-//            tweet.setText(this.tweet.text);
 
             final String bioguide_id = this.bioguide_id;
             final String title = this.title;

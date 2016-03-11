@@ -77,24 +77,6 @@ public class Main_mobile extends AppCompatActivity implements
                 System.out.println("Session failed");
             }
         });
-
-//        // TODO: Use a more specific parent
-//        final ViewGroup parentView = (ViewGroup) getWindow().getDecorView().getRootView();
-//        // TODO: Base this Tweet ID on some data from elsewhere in your app
-//        long tweetId = 631879971628183552L;
-//        TweetUtils.loadTweet(tweetId, new Callback<Tweet>() {
-//            @Override
-//            public void success(Result<Tweet> result) {
-//                TweetView tweetView = new TweetView(Main_mobile.this, result.data);
-//                parentView.addView(tweetView);
-//            }
-//
-//            @Override
-//            public void failure(TwitterException exception) {
-//                Log.d("TwitterKit", "Load Tweet failure", exception);
-//            }
-//        });
-
     }
 
     protected void onStart() {
