@@ -18,6 +18,8 @@ import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.tweetui.TweetUtils;
 import com.twitter.sdk.android.tweetui.TweetView;
@@ -31,6 +33,7 @@ public class Main_mobile extends AppCompatActivity implements
     private static final String TWITTER_KEY = "7sIEH0sd2ieymR8e9i9HV3BnE";
     private static final String TWITTER_SECRET = "WhWUsVkDiLFTJCpM3wDwf2VsaxQ4GptKPogbBHA4mKPXykYlo2";
 
+    TwitterLoginButton login_button;
     Button enter_zipcode;
     Button current_location;
 
@@ -39,6 +42,7 @@ public class Main_mobile extends AppCompatActivity implements
     String mLongitudeText;
 
     GoogleApiClient mGoogleApiClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,22 @@ public class Main_mobile extends AppCompatActivity implements
                     .addApi(LocationServices.API)
                     .build();
         }
+
+        login_button = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
+        login_button.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                // Do something with result, which provides a TwitterSession for making API calls
+                DataHolder.session = result.data;
+                System.out.println("Set Session");
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                // Do something on failure
+                System.out.println("Session failed");
+            }
+        });
 
 //        // TODO: Use a more specific parent
 //        final ViewGroup parentView = (ViewGroup) getWindow().getDecorView().getRootView();
@@ -135,5 +155,13 @@ public class Main_mobile extends AppCompatActivity implements
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Pass the activity result to the login button.
+        login_button.onActivityResult(requestCode, resultCode, data);
     }
 }

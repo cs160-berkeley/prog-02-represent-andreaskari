@@ -1,7 +1,10 @@
 package com.example.andreaskarinam.represent;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -47,19 +50,37 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.models.User;
+import com.twitter.sdk.android.core.services.StatusesService;
 import com.twitter.sdk.android.tweetui.TweetUtils;
 import com.twitter.sdk.android.tweetui.TweetView;
 
 import io.fabric.sdk.android.Fabric;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.models.User;
+
+import retrofit.http.GET;
+import retrofit.http.Query;
 
 public class congressional_mobile extends AppCompatActivity {
 
@@ -80,6 +101,7 @@ public class congressional_mobile extends AppCompatActivity {
     private ViewPager mViewPager;
     public static int county_index;
     public static JSONObject currentJSON;
+    public static Bitmap currentBitmap;
     public static JSONArray repJSONArray;
 
     @Override
@@ -132,6 +154,41 @@ public class congressional_mobile extends AppCompatActivity {
         }
         currentJSON = null;
 
+//        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+//        Fabric.with(this, new Twitter(authConfig));
+//
+//        TwitterSession session = Twitter.getSessionManager().getActiveSession();
+//        Twitter.getApiClient(session).getAccountService().verifyCredentials(true, false, new Callback<User>() {
+//            @Override
+//            public void success(Result<User> userResult) {
+//
+//                User user = userResult.data;
+//                System.out.println(user.profileImageUrl);
+//
+//            }
+//
+//            @Override
+//            public void failure(TwitterException e) {
+//
+//            }
+//        });
+
+//        String api_call2 = "";
+//        try {
+//            api_call2 = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="
+//                    + URLEncoder.encode("SenatorBoxer", "UTF-8") + "&count=1";
+//        } catch (UnsupportedEncodingException ex) {
+//            System.out.println("Can't encode api call");
+//        }
+
+//        new DownloadTask().execute(api_call2);
+//
+//        while (currentJSON == null) {
+//            // make progress bar?
+//        }
+//        System.out.println(currentJSON);
+        currentJSON = null;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -143,7 +200,7 @@ public class congressional_mobile extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
-    private class DownloadTask extends AsyncTask<String, Void, String> {
+    private static class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -180,6 +237,30 @@ public class congressional_mobile extends AppCompatActivity {
         }
     }
 
+    private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -209,12 +290,10 @@ public class congressional_mobile extends AppCompatActivity {
         private String party;
         private String term_end;
         private String twitter_id;
+        private String profile_image_URL;
+        private Bitmap profile_image;
 
         public PlaceholderFragment(int index) {
-//            this.county_index = county_index;
-//            this.representative_index = rep_index;
-//            this.county = data.counties.get(county_index);
-//            this.representative = county.representatives.get(rep_index);
 
             this.representative_index = index;
             try {
@@ -233,6 +312,30 @@ public class congressional_mobile extends AppCompatActivity {
                 this.term_end = repJSON.getString("term_end");
                 this.bioguide_id = repJSON.getString("bioguide_id");
                 this.twitter_id = repJSON.getString("twitter_id");
+                this.profile_image_URL = "https://github.com/unitedstates/images/blob/gh-pages/congress/450x550/"
+                        + this.bioguide_id + ".jpg?raw=true";
+                System.out.println(this.profile_image_URL);
+//                        "http://pbs.twimg.com/profile_images/2430574202/image_normal.jpg";
+
+
+
+//                TwitterSession session = Twitter.getSessionManager().getActiveSession();
+//                Twitter.getApiClient(session).getAccountService().verifyCredentials(true, false, new Callback<User>() {
+//                            @Override
+//                            public void success(Result<User> userResult) {
+//
+//                                User user = userResult.data;
+//                                PlaceholderFragment.this.profile_image_URL = user.profileImageUrl;
+//                                System.out.println(PlaceholderFragment.this.profile_image_URL);
+//
+//                            }
+//                            @Override
+//                            public void failure(TwitterException e) {
+//
+//                            }
+//
+//                        });
+
             } catch (JSONException ex) {
                 System.out.println("Error retrieving candidate JSON data");
             }
@@ -248,8 +351,6 @@ public class congressional_mobile extends AppCompatActivity {
         }
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
-//            FakeData data = new FakeData();
-//            PlaceholderFragment fragment = new PlaceholderFragment(data, congressional_mobile.county_index, sectionNumber);
             PlaceholderFragment fragment = new PlaceholderFragment(sectionNumber);
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -260,6 +361,7 @@ public class congressional_mobile extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_congressional_mobile, container, false);
 
             LinearLayout rl = (LinearLayout) rootView.findViewById(R.id.lin_layout);
@@ -277,8 +379,8 @@ public class congressional_mobile extends AppCompatActivity {
 //            TextView rep_tweet_text = (TextView) rootView.findViewById(R.id.tweet_content_text);
 //            rep_tweet_text.setText(this.representative.last_tweet);
 
-            TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-            Fabric.with(getActivity(), new Twitter(authConfig));
+//            TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+//            Fabric.with(getActivity(), new Twitter(authConfig));
 
 //            // TODO: Use a more specific parent
 //            final ViewGroup parentView = (ViewGroup) getActivity().getWindow().getDecorView().getRootView();
@@ -298,21 +400,7 @@ public class congressional_mobile extends AppCompatActivity {
 //            });
 
             ImageView rep_image = (ImageView) rootView.findViewById(R.id.rep_image);
-//            if (representative.rep_name.equals("Barbara Boxer")) {
-//                rep_image.setImageResource(R.drawable.boxer);
-//            } else if (representative.rep_name.equals("Diane Feinstein")) {
-//                rep_image.setImageResource(R.drawable.feinstein);
-//            } else if (representative.rep_name.equals("Barbara Lee")) {
-//                rep_image.setImageResource(R.drawable.lee);
-//            } else if (representative.rep_name.equals("Tom Udall")) {
-//                rep_image.setImageResource(R.drawable.udall);
-//            } else if (representative.rep_name.equals("Martin Heinrich")) {
-//                rep_image.setImageResource(R.drawable.heinrich);
-//            } else if (representative.rep_name.equals("Stevan Pearce")) {
-//                rep_image.setImageResource(R.drawable.pearce);
-//            } else {
-//                rep_image.setImageResource(R.drawable.mcclintock);
-//            }
+            new DownloadImageTask(rep_image).execute(this.profile_image_URL);
 
             final String bioguide_id = this.bioguide_id;
             final String title = this.title;
