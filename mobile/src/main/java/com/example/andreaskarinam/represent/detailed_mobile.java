@@ -43,7 +43,6 @@ public class detailed_mobile extends AppCompatActivity {
     public static String INDEPENDENT_COLOR = "#FFFFFF";
 
     public int county_index;
-//    public int representative_index;
 
     private String bioguide_id;
     private int representative_index;
@@ -128,17 +127,6 @@ public class detailed_mobile extends AppCompatActivity {
         }
         bills_string = bills_string.trim();
         currentJSON = null;
-
-//        FakeData data = new FakeData();
-//
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
-//            representative_index = intent.getIntExtra(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
-//        }
-//
-//        County county = data.counties.get(county_index);
-//        Representative representative = county.representatives.get(representative_index);
 
         TextView rep_name_text = (TextView) findViewById(R.id.name_text);
         if (this.title.equals("Rep")) {

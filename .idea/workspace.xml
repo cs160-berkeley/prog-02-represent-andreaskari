@@ -43,8 +43,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b4f0860-ca7d-4977-88bd-cf4acd599144" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Represent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,20 +77,10 @@
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+              <caret line="139" column="50" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataHolder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/DataHolder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -98,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="402" column="12" selection-start-line="402" selection-start-column="12" selection-end-line="402" selection-end-column="77" />
+              <caret line="305" column="50" selection-start-line="305" selection-start-column="50" selection-end-line="305" selection-end-column="50" />
               <folding>
                 <element signature="e#9064#9065#0" expanded="true" />
                 <element signature="e#9110#9111#0" expanded="true" />
@@ -114,69 +105,23 @@
       <file leaf-file-name="detailed_mobile.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8965517">
-              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.41379312">
+              <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
               <folding>
-                <element signature="e#8860#8861#0" expanded="true" />
-                <element signature="e#8906#8907#0" expanded="true" />
-                <element signature="e#9421#9422#0" expanded="true" />
-                <element signature="e#9475#9476#0" expanded="true" />
+                <element signature="e#8364#8365#0" expanded="true" />
+                <element signature="e#8410#8411#0" expanded="true" />
+                <element signature="e#8925#8926#0" expanded="true" />
+                <element signature="e#8979#8980#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_congressional_mobile.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_congressional_mobile.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.344828">
-              <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-              <folding>
-                <element signature="e#444#477#0" expanded="true" />
-                <element signature="e#506#541#0" expanded="true" />
-                <element signature="e#571#606#0" expanded="true" />
-                <element signature="e#634#667#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main_mobile.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main_mobile.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6206896">
-              <caret line="14" column="45" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="45" />
-              <folding>
-                <element signature="e#272#305#0" expanded="true" />
-                <element signature="e#330#365#0" expanded="true" />
-                <element signature="e#391#426#0" expanded="true" />
-                <element signature="e#450#483#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/build.gradle">
+      <file leaf-file-name="WatchListenerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchListenerService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -3792,7 +3737,6 @@
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_detailed_mobile.xml" />
         <option value="$PROJECT_DIR$/mylibrary/src/main/java/com/example/andreaskarinam/mylibrary/County.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/drawable/party_icon.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchListenerService.java" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_main_watch.xml" />
         <option value="$PROJECT_DIR$/wear/build.gradle" />
@@ -3812,10 +3756,11 @@
         <option value="$PROJECT_DIR$/mobile/build.gradle" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_main_mobile.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/DataHolder.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_congressional_mobile.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchListenerService.java" />
       </list>
     </option>
   </component>
@@ -3875,6 +3820,38 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Represent" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Represent" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="represent" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Represent" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mylibrary" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -4458,13 +4435,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchListenerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="34" selection-start-line="20" selection-start-column="12" selection-end-line="23" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4487,24 +4457,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/ShakeEventListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/PhoneListenerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.52272725">
           <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchToPhoneService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -4533,13 +4489,6 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/main_watch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5808656">
-          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_main_watch.xml">
@@ -4671,10 +4620,37 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/main_watch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/ShakeEventListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchToPhoneService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4827586">
+          <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
+          <folding>
+            <element signature="e#3051#3680#0" expanded="true" />
+            <element signature="e#3679#3680#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/Main_mobile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <caret line="139" column="50" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -4684,7 +4660,7 @@
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/congressional_mobile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="402" column="12" selection-start-line="402" selection-start-column="12" selection-end-line="402" selection-end-column="77" />
+          <caret line="305" column="50" selection-start-line="305" selection-start-column="50" selection-end-line="305" selection-end-column="50" />
           <folding>
             <element signature="e#9064#9065#0" expanded="true" />
             <element signature="e#9110#9111#0" expanded="true" />
@@ -4696,15 +4672,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/example/andreaskarinam/represent/WatchListenerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/example/andreaskarinam/represent/detailed_mobile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8965517">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.41379312">
+          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
           <folding>
-            <element signature="e#8860#8861#0" expanded="true" />
-            <element signature="e#8906#8907#0" expanded="true" />
-            <element signature="e#9421#9422#0" expanded="true" />
-            <element signature="e#9475#9476#0" expanded="true" />
+            <element signature="e#8364#8365#0" expanded="true" />
+            <element signature="e#8410#8411#0" expanded="true" />
+            <element signature="e#8925#8926#0" expanded="true" />
+            <element signature="e#8979#8980#0" expanded="true" />
           </folding>
         </state>
       </provider>
