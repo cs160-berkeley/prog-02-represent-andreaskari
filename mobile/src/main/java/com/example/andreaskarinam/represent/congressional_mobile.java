@@ -191,6 +191,29 @@ public class congressional_mobile extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+        String[] titles = new String[data.size()];
+        String[] names = new String[data.size()];
+        String[] parties = new String[data.size()];
+        for (int i = 0; i < data.size(); i++) {
+            titles[i] = (String) data.get(i).get(0);
+            names[i] = (String) data.get(i).get(1);
+            parties[i] = (String) data.get(i).get(4);
+            System.out.println((String) data.get(i).get(0));
+            System.out.println((String) data.get(i).get(1));
+            System.out.println((String) data.get(i).get(4));
+        }
+        int[] vote_data = {45, 69};
+        String county = "Some county";
+
+        Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
+        sendIntent.putExtra("/Sending Candidate Titles", titles);
+        sendIntent.putExtra("/Sending Candidate Names", names);
+        sendIntent.putExtra("/Sending Candidate Parties", parties);
+        sendIntent.putExtra("/Sending 2012 Vote Data", vote_data);
+        sendIntent.putExtra("/Sending County", county);
+        startService(sendIntent);
     }
 
     private static class DownloadTask extends AsyncTask<String, Void, String> {

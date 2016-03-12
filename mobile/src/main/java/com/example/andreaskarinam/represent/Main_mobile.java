@@ -123,9 +123,9 @@ public class Main_mobile extends AppCompatActivity implements
         String[] message_contents = {mLatitudeText, mLongitudeText};
         System.out.println(message_contents);
 
-        Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
-        sendIntent.putExtra(message, message_contents);
-        startService(sendIntent);
+//        Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
+//        sendIntent.putExtra(message, message_contents);
+//        startService(sendIntent);
 
         Intent intent = new Intent(this, congressional_mobile.class);
         intent.putExtra(message, message_contents);

@@ -31,7 +31,9 @@
         <service
             android:name=".ShakeEventListener"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".WelcomeActivity_wear"></activity>
     </application>
 
 </manifest>

@@ -43,13 +43,26 @@ public class PhoneToWatchService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        final int county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
+        final String[] titles = intent.getStringArrayExtra("/Sending Candidate Titles");
+        final String[] names = intent.getStringArrayExtra("/Sending Candidate Names");
+        final String[] parties = intent.getStringArrayExtra("/Sending Candidate Parties");
+        final int[] vote_data = intent.getIntArrayExtra("/Sending 2012 Vote Data");
+        final String county = intent.getStringExtra("/Sending County");
+
+        int length = titles.length;
+        String message = length + "\n";
+        for (int i = 0; i < length; i++) {
+            message += titles[i] + "\n" + names[i] + "\n" + parties[i] + "\n";
+        }
+        message += vote_data[0] + "\n" + vote_data[1] + "\n" + county;
+
+        final String watch_message = message;
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mApiClient.connect();
-                sendMessage(FakeData.COUNTY_INDEX_KEY, "" + county_index);
+                sendMessage("/All Watch Data", watch_message);
             }
         }).start();
 
