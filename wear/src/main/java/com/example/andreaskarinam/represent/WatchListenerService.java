@@ -3,7 +3,6 @@ package com.example.andreaskarinam.represent;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.andreaskarinam.mylibrary.FakeData;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 
@@ -25,7 +24,6 @@ public class WatchListenerService extends WearableListenerService {
 
             Intent intent = new Intent(this, main_watch.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
             intent.putExtra("/All Watch Data", data_string);
             startActivity(intent);
         } else {

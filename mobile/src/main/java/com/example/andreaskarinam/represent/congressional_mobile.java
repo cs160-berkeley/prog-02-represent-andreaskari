@@ -25,10 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.andreaskarinam.mylibrary.County;
-import com.example.andreaskarinam.mylibrary.FakeData;
-import com.example.andreaskarinam.mylibrary.Representative;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -124,8 +120,12 @@ public class congressional_mobile extends AppCompatActivity {
         String geocoding_call = "";
         String revgeocoding_call = "";
         if (intent != null) {
-            String lat_long_message = "/Latitude and Longitude";
-            String zipcode_message = "/Zipcode";
+            final String shakeMessage = "Received shake";
+            final String lat_long_message = "/Latitude and Longitude";
+            final String zipcode_message = "/Zipcode";
+            if (intent.hasExtra(shakeMessage)) {
+                // add shake details
+            }
             if (intent.hasExtra(lat_long_message)) {
                 String[] lat_long = intent.getStringArrayExtra(lat_long_message);
                 System.out.println(lat_long);
@@ -410,10 +410,6 @@ public class congressional_mobile extends AppCompatActivity {
         public static String INDEPENDENT_COLOR = "#FFFFFF";
 
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private int county_index;
-//        private int representative_index;
-        private County county;
-        private Representative representative;
 
         private int zipcode;
         private int latitude;
@@ -431,7 +427,6 @@ public class congressional_mobile extends AppCompatActivity {
         private String twitter_id;
         private Tweet tweet;
         private String profile_image_URL;
-        private Bitmap profile_image;
 
         public PlaceholderFragment(int index) {
 

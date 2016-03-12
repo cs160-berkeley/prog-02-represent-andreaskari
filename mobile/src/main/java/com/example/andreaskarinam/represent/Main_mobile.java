@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.andreaskarinam.mylibrary.FakeData;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -67,7 +66,6 @@ public class Main_mobile extends AppCompatActivity implements
             @Override
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API calls
-                DataHolder.session = result.data;
                 System.out.println("Set Session");
             }
 

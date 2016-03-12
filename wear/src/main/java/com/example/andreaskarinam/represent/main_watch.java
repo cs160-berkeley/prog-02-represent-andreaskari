@@ -22,9 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.andreaskarinam.mylibrary.County;
-import com.example.andreaskarinam.mylibrary.FakeData;
-import com.example.andreaskarinam.mylibrary.Representative;
 import java.util.ArrayList;
 import java.util.List;
 

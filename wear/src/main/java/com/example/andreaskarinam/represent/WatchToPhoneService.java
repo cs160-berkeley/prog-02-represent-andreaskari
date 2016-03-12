@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.andreaskarinam.mylibrary.FakeData;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Result;
@@ -97,7 +96,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         System.out.println("Attempting to send message from watch");
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-                        sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
                     }
                 });
     }
