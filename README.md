@@ -1,6 +1,6 @@
 # PROG 02: Represent!
 
-THis app allows you to conveniently get information about the senators and representatives at various locations in the United States, as well as closely follow the 2012 Presidential race between Obama and Romney.  
+This app allows you to conveniently get information about the senators and representatives at various locations in the United States, as well as closely follow the 2012 Presidential race between Obama and Romney.  
 
 There are two apps, the mobile app for Android and the watch wear app for Android.
 The two work together to provide information to the users.
