@@ -103,10 +103,14 @@ public class congressional_mobile extends AppCompatActivity {
     private ViewPager mViewPager;
     public static int county_index;
     public static JSONObject currentJSON;
-    public static Bitmap currentBitmap;
     public static JSONArray repJSONArray;
 
     public static ArrayList<ArrayList> data;
+    public static String county;
+    public static String state;
+    public static String county_tag;
+    public static int romney_percent;
+    public static int obama_percent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +120,9 @@ public class congressional_mobile extends AppCompatActivity {
         setTitle("Represent");
 
         Intent intent = getIntent();
-        String api_call = "";
+        String sunlight_call = "";
+        String geocoding_call = "";
+        String revgeocoding_call = "";
         if (intent != null) {
             String lat_long_message = "/Latitude and Longitude";
             String zipcode_message = "/Zipcode";
@@ -124,10 +130,14 @@ public class congressional_mobile extends AppCompatActivity {
                 String[] lat_long = intent.getStringArrayExtra(lat_long_message);
                 System.out.println(lat_long);
                 try {
-                    api_call = "http://congress.api.sunlightfoundation.com/legislators/locate?latitude="
+                    sunlight_call = "http://congress.api.sunlightfoundation.com/legislators/locate?latitude="
                             + URLEncoder.encode(lat_long[0], "UTF-8") + "&longitude="
                             + URLEncoder.encode(lat_long[1], "UTF-8")
                             + "&apikey=47a2503bbd494437916cc6acfbdf80fe";
+                    revgeocoding_call = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+                            + URLEncoder.encode(lat_long[0], "UTF-8")  + ","
+                            + URLEncoder.encode(lat_long[1], "UTF-8")
+                            + "&location_type=APPROXIMATE&key=AIzaSyDXYbNjEQqk7hUpm21mzJBnQNY7TjYCiDw";
                 } catch (UnsupportedEncodingException ex) {
                     System.out.println("Can't encode api call");
                 }
@@ -135,17 +145,20 @@ public class congressional_mobile extends AppCompatActivity {
                 String zipcode = intent.getStringExtra(zipcode_message);
                 System.out.println(zipcode);
                 try {
-                    api_call = "http://congress.api.sunlightfoundation.com/legislators/locate?zip="
+                    sunlight_call = "http://congress.api.sunlightfoundation.com/legislators/locate?zip="
                             + URLEncoder.encode(zipcode, "UTF-8")
                             + "&apikey=47a2503bbd494437916cc6acfbdf80fe";
+                    geocoding_call = "https://maps.googleapis.com/maps/api/geocode/json?address="
+                            + URLEncoder.encode(zipcode, "UTF-8") +
+                            "&key=AIzaSyDXYbNjEQqk7hUpm21mzJBnQNY7TjYCiDw";
                 } catch (UnsupportedEncodingException ex) {
                     System.out.println("Can't encode api call");
                 }
             }
-            county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
+//            county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
         }
 
-        new DownloadTask().execute(api_call);
+        new DownloadTask().execute(sunlight_call);
 
         while (currentJSON == null) {
             // make progress bar?
@@ -182,6 +195,61 @@ public class congressional_mobile extends AppCompatActivity {
         }
         currentJSON = null;
 
+
+        if (!revgeocoding_call.equals("")) {
+            new DownloadTask().execute(revgeocoding_call);
+            while (currentJSON == null) {
+                // make progress bar?
+            }
+
+            try {
+                JSONArray locationJSON = currentJSON.getJSONArray("results");
+                JSONArray firstLocationJSON = locationJSON.getJSONObject(0).getJSONArray("address_components");
+                JSONObject countyJSON = firstLocationJSON.getJSONObject(3);
+                JSONObject stateJSON = firstLocationJSON.getJSONObject(4);
+
+                county = countyJSON.getString("long_name");
+                state = stateJSON.getString("short_name");
+
+            } catch (JSONException ex) {
+                System.out.println("Can't get repJSON Object");
+            }
+            currentJSON = null;
+        } else {
+            new DownloadTask().execute(geocoding_call);
+            while (currentJSON == null) {
+                // make progress bar?
+            }
+
+            try {
+                JSONArray locationJSON = currentJSON.getJSONArray("results");
+                JSONArray firstLocationJSON = locationJSON.getJSONObject(0).getJSONArray("address_components");
+                JSONObject countyJSON = firstLocationJSON.getJSONObject(2);
+                JSONObject stateJSON = firstLocationJSON.getJSONObject(3);
+
+                county = countyJSON.getString("long_name");
+                state = stateJSON.getString("short_name");
+
+            } catch (JSONException ex) {
+                System.out.println("Can't get repJSON Object");
+            }
+            currentJSON = null;
+        }
+        county_tag = county + ", " + state;
+        System.out.println(county_tag);
+
+        try {
+            JSONObject voteJSON = new JSONObject(loadJSONFromAsset());
+            JSONObject countyVoteJSON = voteJSON.getJSONObject(county_tag);
+            romney_percent = (int) countyVoteJSON.getDouble("romney");
+            obama_percent = (int) countyVoteJSON.getDouble("obama");
+            System.out.println("obama " + obama_percent);
+            System.out.println("romney " + romney_percent);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -204,16 +272,31 @@ public class congressional_mobile extends AppCompatActivity {
             System.out.println((String) data.get(i).get(1));
             System.out.println((String) data.get(i).get(4));
         }
-        int[] vote_data = {45, 69};
-        String county = "Some county";
+        int[] vote_data = {romney_percent, obama_percent};
 
         Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
         sendIntent.putExtra("/Sending Candidate Titles", titles);
         sendIntent.putExtra("/Sending Candidate Names", names);
         sendIntent.putExtra("/Sending Candidate Parties", parties);
         sendIntent.putExtra("/Sending 2012 Vote Data", vote_data);
-        sendIntent.putExtra("/Sending County", county);
+        sendIntent.putExtra("/Sending County", county_tag);
         startService(sendIntent);
+    }
+
+    public String loadJSONFromAsset() {
+        String json_string = null;
+        try {
+            InputStream is = this.getAssets().open("newelectioncounty2012.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json_string = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json_string;
     }
 
     private static class DownloadTask extends AsyncTask<String, Void, String> {
@@ -459,7 +542,7 @@ public class congressional_mobile extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return data.size();
         }
 
         @Override
