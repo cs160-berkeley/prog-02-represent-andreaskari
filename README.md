@@ -7,7 +7,7 @@ The two work together to provide information to the users.
 
 From the mobile app, users can enter a zipcode or choose their current location to get information about the local senators and representatives. This includes links to their email and website, their last tweet, the bills they sponsored recently and the committees that they currently participate on.
 
-Users can scroll through these 
+Users can scroll through these political figures on their watch by swiping up and down. Tapping on one will bring up the detialed information view of that candidate on the mobile phone. Shaking the watch is a fun feature that selects a random location in the United States and updates with the corresponding senators and representatives information on both the mobile and wear apps.
 
 ## Authors
 
