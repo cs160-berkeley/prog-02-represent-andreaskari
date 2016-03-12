@@ -28,7 +28,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     private GoogleApiClient mWatchApiClient;
     private List<Node> nodes = new ArrayList<>();
 
-    public int county_index;
     public int representative_index;
 
     @Override
@@ -58,7 +57,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final String detailedMessage = "/Representative Index";
-        final String shakeMessage = "Received shake";
+        final String shakeMessage = "/Received shake";
         if (intent.hasExtra(detailedMessage)) {
             representative_index = intent.getIntExtra(detailedMessage, 0);
 
@@ -70,12 +69,13 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                 }
             }).start();
 
-        } else {
+        } else if (intent.hasExtra(shakeMessage)) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     mWatchApiClient.connect();
                     sendMessage(shakeMessage, "");
+                    ShakeEventListener.shake_made_message = false;
                 }
             }).start();
 

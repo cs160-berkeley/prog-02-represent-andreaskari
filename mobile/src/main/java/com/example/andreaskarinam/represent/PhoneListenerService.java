@@ -14,10 +14,11 @@ import java.nio.charset.StandardCharsets;
 
 public class PhoneListenerService extends WearableListenerService {
 
+
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         final String detailedMessage = "/Representative Index";
-        final String shakeMessage = "Received shake";
+        final String shakeMessage = "/Received shake";
         if (messageEvent.getPath().equalsIgnoreCase(detailedMessage)) {
 
             String message_contents = new String(messageEvent.getData(), StandardCharsets.UTF_8);
@@ -36,12 +37,11 @@ public class PhoneListenerService extends WearableListenerService {
         } else if (messageEvent.getPath().equalsIgnoreCase(shakeMessage)) {
 
 //            String index_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-
+            System.out.println("Got shake message");
             Intent intent = new Intent(this, congressional_mobile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(shakeMessage, "");
             startActivity(intent);
-
         } else {
             super.onMessageReceived(messageEvent);
         }

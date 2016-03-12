@@ -10,7 +10,7 @@ import android.hardware.SensorManager;
  * Listener that detects shake gesture.
  */
 public class ShakeEventListener implements SensorEventListener {
-
+    public static boolean shake_made_message = false;
 
     /** Minimum movement force to consider. */
     private static final int MIN_FORCE = 10;

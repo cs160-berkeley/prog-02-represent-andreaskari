@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Rep\n Name"
+        android:text="Senator\n Person&apos;s Name"
         android:textSize="30dp"
         android:textColor="#FFFFFF"
         android:gravity="center"

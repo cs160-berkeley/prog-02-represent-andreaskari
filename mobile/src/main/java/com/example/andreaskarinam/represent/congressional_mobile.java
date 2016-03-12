@@ -53,6 +53,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
@@ -115,18 +116,52 @@ public class congressional_mobile extends AppCompatActivity {
 
         setTitle("Represent");
 
+        final String shakeMessage = "/Received shake";
+        final String lat_long_message = "/Latitude and Longitude";
+        final String zipcode_message = "/Zipcode";
+
         Intent intent = getIntent();
         String sunlight_call = "";
         String geocoding_call = "";
         String revgeocoding_call = "";
         if (intent != null) {
-            final String shakeMessage = "Received shake";
-            final String lat_long_message = "/Latitude and Longitude";
-            final String zipcode_message = "/Zipcode";
             if (intent.hasExtra(shakeMessage)) {
                 // add shake details
-            }
-            if (intent.hasExtra(lat_long_message)) {
+                Random generator = new Random();
+                try {
+                    int count = 0;
+                    String lat_string = "";
+                    String lon_string = "";
+                    while (count == 0) {
+                        double lat = generator.nextInt(100) / 100.0 * (50 - 24) + 24;
+                        double lon = generator.nextInt(100) / 100.0 * (-67 + 125) - 125;
+                        lat_string = String.format("%.3f", lat);
+                        lon_string = String.format("%.3f", lon);
+                        System.out.println("New lat lon: " + lat + " " + lon);
+                        String random_sunlight_call = "http://congress.api.sunlightfoundation.com/legislators/locate?latitude="
+                                + URLEncoder.encode(lat_string, "UTF-8") + "&longitude="
+                                + URLEncoder.encode(lon_string, "UTF-8")
+                                + "&apikey=47a2503bbd494437916cc6acfbdf80fe";
+
+                        new DownloadTask().execute(random_sunlight_call);
+                        while (currentJSON == null) {
+                            // make progress bar?
+                        }
+                        count = currentJSON.getInt("count");
+                        if (count == 0) {
+                            currentJSON = null;
+                        }
+                    }
+                    revgeocoding_call = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+                            + URLEncoder.encode(lat_string, "UTF-8")  + ","
+                            + URLEncoder.encode(lon_string, "UTF-8")
+                            + "&location_type=APPROXIMATE&key=AIzaSyDXYbNjEQqk7hUpm21mzJBnQNY7TjYCiDw";
+                } catch (UnsupportedEncodingException ex) {
+                    System.out.println("Can't encode api call");
+                } catch (JSONException ex) {
+                    System.out.println("Can't get repJSON Object");
+                }
+            } else if (intent.hasExtra(lat_long_message)) {
                 String[] lat_long = intent.getStringArrayExtra(lat_long_message);
                 System.out.println(lat_long);
                 try {
@@ -155,13 +190,14 @@ public class congressional_mobile extends AppCompatActivity {
                     System.out.println("Can't encode api call");
                 }
             }
-//            county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
         }
 
-        new DownloadTask().execute(sunlight_call);
+        if (!(intent != null && intent.hasExtra(shakeMessage))) {
+            new DownloadTask().execute(sunlight_call);
 
-        while (currentJSON == null) {
-            // make progress bar?
+            while (currentJSON == null) {
+                // make progress bar?
+            }
         }
 
         try {

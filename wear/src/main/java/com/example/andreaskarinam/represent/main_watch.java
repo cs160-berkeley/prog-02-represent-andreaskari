@@ -43,17 +43,20 @@ public class main_watch extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_watch);
 
-//        FakeData data = new FakeData();
-
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
 
         mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
 
             public void onShake() {
-//                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-//                sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, 2);
-//                startService(sendIntent);
+                final String shakeMessage = "/Received shake";
+                if (!ShakeEventListener.shake_made_message) {
+                    System.out.println("Shake!!");
+                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                    sendIntent.putExtra(shakeMessage, "");
+                    startService(sendIntent);
+                }
+                ShakeEventListener.shake_made_message = true;
 //
 //                Intent watchIntent = new Intent(getBaseContext(), main_watch.class);
 //                watchIntent.putExtra(FakeData.COUNTY_INDEX_KEY, 2);
@@ -62,8 +65,6 @@ public class main_watch extends Activity {
         });
 
         Intent intent = getIntent();
-        System.out.println("Intent is:");
-        System.out.println(intent);
         String message = "/All Watch Data";
         if (intent != null && intent.hasExtra(message)) {
             String data_string = intent.getStringExtra(message);
@@ -153,8 +154,6 @@ public class main_watch extends Activity {
         private String name;
         private String party;
 
-//        private Representative representative;
-
         public RepresentativeFragment(int rep_number) {
             this.representative_number = rep_number;
             if (titles[rep_number].equals("Rep")) {
@@ -164,7 +163,6 @@ public class main_watch extends Activity {
             }
             this.name = names[rep_number];
             this.party = parties[rep_number];
-//            this.representative = county.representatives.get(rep_number);
         }
 
         // Returns a new instance of this fragment for the given section number
