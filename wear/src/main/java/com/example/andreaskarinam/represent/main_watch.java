@@ -33,9 +33,6 @@ public class main_watch extends Activity {
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
 
-//    public static int county_index;
-//    public static County county;
-
     public static int num_reps;
     public static String[] titles;
     public static String[] names;
@@ -206,10 +203,9 @@ public class main_watch extends Activity {
                 @Override
                 public void onClick(View v) {
                     System.out.println("Click");
-//                    Intent sendIntent = new Intent(getActivity(), WatchToPhoneService.class);
-//                    sendIntent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
-//                    sendIntent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_number);
-//                    getActivity().startService(sendIntent);
+                    Intent sendIntent = new Intent(getActivity(), WatchToPhoneService.class);
+                    sendIntent.putExtra("/Representative Index", representative_number);
+                    getActivity().startService(sendIntent);
                 }
             });
 

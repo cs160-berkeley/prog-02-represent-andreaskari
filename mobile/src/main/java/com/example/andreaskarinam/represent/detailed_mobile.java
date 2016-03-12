@@ -64,15 +64,15 @@ public class detailed_mobile extends AppCompatActivity {
         String committees_api_call = "";
         String bills_api_call = "";
         if (intent != null) {
-            final String message = "/Bioguide";
-            if (intent.hasExtra(message)) {
-                bioguide_id = intent.getStringExtra(message);
-                title = intent.getStringExtra("/Title");
-                full_name = intent.getStringExtra("/Full_Name");
-                party = intent.getStringExtra("/Party");
-                term_end = intent.getStringExtra("/Term_End");
-                profile_url = intent.getStringExtra("/Profile URL");
-                System.out.println(bioguide_id);
+            final String detailedMessage = "/Representative Index";
+            if (intent.hasExtra(detailedMessage)) {
+                representative_index = intent.getIntExtra(detailedMessage, 0);
+                title = (String) congressional_mobile.data.get(representative_index).get(0);
+                full_name = (String) congressional_mobile.data.get(representative_index).get(1);
+                party = (String) congressional_mobile.data.get(representative_index).get(4);
+                term_end = (String) congressional_mobile.data.get(representative_index).get(5);
+                bioguide_id = (String) congressional_mobile.data.get(representative_index).get(6);
+                profile_url = (String) congressional_mobile.data.get(representative_index).get(8);
                 try {
                     committees_api_call = "http://congress.api.sunlightfoundation.com/committees?member_ids="
                             + URLEncoder.encode(bioguide_id, "UTF-8")
@@ -85,6 +85,28 @@ public class detailed_mobile extends AppCompatActivity {
                     System.out.println("Can't encode api call");
                 }
             }
+
+//            final String message = "/Bioguide";
+//            if (intent.hasExtra(message)) {
+//                bioguide_id = intent.getStringExtra(message);
+//                title = intent.getStringExtra("/Title");
+//                full_name = intent.getStringExtra("/Full_Name");
+//                party = intent.getStringExtra("/Party");
+//                term_end = intent.getStringExtra("/Term_End");
+//                profile_url = intent.getStringExtra("/Profile URL");
+//                System.out.println(bioguide_id);
+//                try {
+//                    committees_api_call = "http://congress.api.sunlightfoundation.com/committees?member_ids="
+//                            + URLEncoder.encode(bioguide_id, "UTF-8")
+//                            + "&apikey=47a2503bbd494437916cc6acfbdf80fe";
+//
+//                    bills_api_call = "http://congress.api.sunlightfoundation.com/bills?sponsor_id="
+//                            + URLEncoder.encode(bioguide_id, "UTF-8")
+//                            + "&apikey=47a2503bbd494437916cc6acfbdf80fe";
+//                } catch (UnsupportedEncodingException ex) {
+//                    System.out.println("Can't encode api call");
+//                }
+//            }
             county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
             representative_index = intent.getIntExtra(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
         }

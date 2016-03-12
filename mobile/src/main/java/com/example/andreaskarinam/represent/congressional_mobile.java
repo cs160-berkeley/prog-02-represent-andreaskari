@@ -405,25 +405,35 @@ public class congressional_mobile extends AppCompatActivity {
             TweetView tweet_view = (TweetView) rootView.findViewById(R.id.tweet);
             new DownloadTweetTask(tweet_view).execute(this.twitter_id);
 
-            final String bioguide_id = this.bioguide_id;
-            final String title = this.title;
-            final String full_name = this.full_name;
-            final String party = this.party;
-            final String term_end = this.term_end;
-            final String profile_url = this.profile_image_URL;
+            final int rep_index = this.representative_index;
             rep_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), detailed_mobile.class);
-                    intent.putExtra("/Bioguide", bioguide_id);
-                    intent.putExtra("/Title", title);
-                    intent.putExtra("/Full_Name", full_name);
-                    intent.putExtra("/Party", party);
-                    intent.putExtra("/Term_End", term_end);
-                    intent.putExtra("/Profile URL", profile_url);
+                    intent.putExtra("/Representative Index", rep_index);
                     startActivity(intent);
                 }
             });
+
+//            final String bioguide_id = this.bioguide_id;
+//            final String title = this.title;
+//            final String full_name = this.full_name;
+//            final String party = this.party;
+//            final String term_end = this.term_end;
+//            final String profile_url = this.profile_image_URL;
+//            rep_image.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent intent = new Intent(getActivity(), detailed_mobile.class);
+//                    intent.putExtra("/Bioguide", bioguide_id);
+//                    intent.putExtra("/Title", title);
+//                    intent.putExtra("/Full_Name", full_name);
+//                    intent.putExtra("/Party", party);
+//                    intent.putExtra("/Term_End", term_end);
+//                    intent.putExtra("/Profile URL", profile_url);
+//                    startActivity(intent);
+//                }
+//            });
 
             return rootView;
         }

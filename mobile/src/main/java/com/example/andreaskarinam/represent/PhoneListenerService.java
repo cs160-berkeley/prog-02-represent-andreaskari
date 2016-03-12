@@ -17,17 +17,16 @@ public class PhoneListenerService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-        if (messageEvent.getPath().equalsIgnoreCase(FakeData.MESSAGE)) {
+        final String detailedMessage = "/Representative Index";
+        final String shakeMessage = "Received shake";
+        if (messageEvent.getPath().equalsIgnoreCase(detailedMessage)) {
 
-            String indices_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            String[] indices = indices_string.split(" ");
-            int county_index = Integer.parseInt(indices[0]);
-            int representative_index = Integer.parseInt(indices[1]);
+            String message_contents = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            int representative_index = Integer.parseInt(message_contents);
 
             Intent intent = new Intent(this, detailed_mobile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
-            intent.putExtra(FakeData.REPRESENTATIVE_INDEX_KEY, representative_index);
+            intent.putExtra(detailedMessage, representative_index);
             startActivity(intent);
 
             // so you may notice this crashes the phone because it's
@@ -35,14 +34,13 @@ public class PhoneListenerService extends WearableListenerService {
             // replace sending a toast with, like, starting a new activity or something.
             // who said skeleton code is untouchable? #breakCSconceptions
 
-        } else if (messageEvent.getPath().equalsIgnoreCase(FakeData.COUNTY_INDEX_KEY)) {
+        } else if (messageEvent.getPath().equalsIgnoreCase(shakeMessage)) {
 
-            String index_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            int county_index = Integer.parseInt(index_string);
+//            String index_string = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
             Intent intent = new Intent(this, congressional_mobile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(FakeData.COUNTY_INDEX_KEY, county_index);
+            intent.putExtra(shakeMessage, "");
             startActivity(intent);
 
         } else {

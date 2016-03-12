@@ -58,26 +58,25 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        county_index = intent.getIntExtra(FakeData.COUNTY_INDEX_KEY, 0);
-        if (intent.hasExtra(FakeData.REPRESENTATIVE_INDEX_KEY)) {
-            representative_index = intent.getIntExtra(FakeData.REPRESENTATIVE_INDEX_KEY, 0);
+        final String detailedMessage = "/Representative Index";
+        final String shakeMessage = "Received shake";
+        if (intent.hasExtra(detailedMessage)) {
+            representative_index = intent.getIntExtra(detailedMessage, 0);
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     mWatchApiClient.connect();
-                    sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
+                    sendMessage(detailedMessage, "" + representative_index);
                 }
             }).start();
 
         } else {
-
-            System.out.println("Received shake");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     mWatchApiClient.connect();
-                    sendMessage(FakeData.COUNTY_INDEX_KEY, "" + county_index);
+                    sendMessage(shakeMessage, "");
                 }
             }).start();
 
@@ -98,7 +97,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         System.out.println("Attempting to send message from watch");
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-//                        sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
+                        sendMessage(FakeData.MESSAGE, county_index + " " + representative_index);
                     }
                 });
     }
